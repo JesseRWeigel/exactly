@@ -199,7 +199,7 @@ docs/index.html          the published page, generated from the leaderboard
 `scripts/verify.sh` is the gate and its exit code is the result. No step prints success for
 something it did not run, and a step that cannot run is a failure rather than a skip.
 
-- **144 unit tests.** Every counting decision is an assertion with the disagreeing reading named
+- **158 unit tests.** Every counting decision is an assertion with the disagreeing reading named
   next to it, so the file doubles as the specification.
 - **The reference control.** All 500 composed answers must be graded compliant, and the off-by-one
   variants must all fail. A grader nothing can satisfy is a bug that looks exactly like a hard

@@ -170,6 +170,40 @@ PYTHON
 }
 step "the README prose has no scaffold markers left in it" prose_only
 
+# Every count the README states about itself, checked against the thing it counts. A pasted
+# "144 unit tests" goes stale the moment somebody adds a test, and it did: the prose said 144
+# while the Status block said 158, and nothing noticed until a human read both.
+readme_counts() {
+  python3 - "$TESTS" <<'PYTHON'
+import importlib.util, pathlib, sys
+
+def load(path, name):
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+sabotage = load("scripts/sabotage.py", "sabotage_under_check")
+privacy = load("scripts/privacy_scan.py", "privacy_under_check")
+readme = pathlib.Path("README.md").read_text(encoding="utf-8")
+
+claims = [
+    (f"**{int(sys.argv[1])} unit tests.**", "the unit suite's size"),
+    (f"**{len(sabotage.SABOTAGES)} sabotages under the three-gate rule**", "the sabotage count"),
+    (f"against {len(list(pathlib.Path('scripts/probes').glob('*.py')))} probes",
+     "the probe count"),
+    (f"{len(privacy.positive_controls())} planted positive controls", "the positive controls"),
+    (f"{len(privacy.NEGATIVE_CONTROLS)} negative controls", "the negative controls"),
+]
+missing = [why for phrase, why in claims if phrase not in readme]
+for phrase, why in claims:
+    if phrase not in readme:
+        print(f"the README no longer states {why} correctly; expected the phrase {phrase!r}")
+sys.exit(1 if missing else 0)
+PYTHON
+}
+step "the README's own counts still match what they count" readme_counts
+
 # ---------------------------------------------------------------------------------------------
 # 7. the tree is exactly as it was found
 # ---------------------------------------------------------------------------------------------
