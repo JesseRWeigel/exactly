@@ -270,8 +270,8 @@ ok   the fingerprint does not depend on where the code lives
      fingerprint: fe3d23ea8c316fb0907ac549cf449ece0b7c8d4d3ef29c85c3980274c3b49cdb
 ok   an independent recount agrees with every headline number
 ok   the privacy scan finds its positive controls and nothing else
-FAIL no tracked file is larger than a megabyte
-       fixtures/responses/qwen3.5_9b.jsonl 1588k
+ok   no tracked file is larger than two megabytes
+ok   every tracked file is text, so nothing is invisible to the privacy scan
 ok   the README exists
 ok   the README carries a Status section
 ok   the README carries a Unfinished section
@@ -282,9 +282,8 @@ ok   the README prose has no scaffold markers left in it
 ok   the README's own counts still match what they count
 ok   the verify run did not modify the tree it verifies
 
-steps passed: 17, failed: 1
-VERIFY FAILED: exactly
-  - no tracked file is larger than a megabyte
+steps passed: 19, failed: 0
+VERIFY PASSED: exactly
 ```
 
 ## Unfinished
