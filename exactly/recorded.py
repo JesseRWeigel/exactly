@@ -11,7 +11,7 @@ So the check is not optional and it is not a warning. A fixture whose prompt dig
 the prompt with the same id is a hard failure, named and counted, and `verify.sh` fails on it.
 
 The second guard here is about truncation. A response that stopped because it exhausted the
-generation budget is not an attempt at the constraint, it is a sentence cut in half, and grading
+generation budget is a sentence cut in half rather than an attempt at the constraint, and grading
 it as a counting failure turns the leaderboard into a measurement of `num_predict`. Measured on
 this workstation, gpt-oss:20b accepts `think: false` and then spends all 1200 tokens of the
 budget on a hidden reasoning channel ollama strips out, returning nineteen visible characters.

@@ -2,8 +2,8 @@
 
 This exists for two reasons that are worth separating.
 
-  IT IS THE CONTROL. A benchmark whose grader cannot be scored 100 by anything is not a
-  benchmark, it is a bug. `baselines.reference` composes an answer for every one of the 500
+  IT IS THE CONTROL. A grader that nothing can satisfy is a bug wearing the costume of a hard
+  benchmark. `baselines.reference` composes an answer for every one of the 500
   prompts and the build refuses to ship if a single one is graded non-compliant, so the harness
   is proved able to accept a correct answer before any model is asked for one.
 

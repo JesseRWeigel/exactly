@@ -13,7 +13,7 @@ buried.
   writes less scores well on it. The families are kept apart in the leaderboard for exactly that
   reason, and the signed error is still recorded for bound families so the slack is visible.
 
-  LENIENT GRADING IS A SECOND READING, NOT A REPLACEMENT. Models wrap answers in preambles, code
+  LENIENT GRADING IS A SECOND READING ALONGSIDE THE STRICT ONE. Models wrap answers in code
   fences and self-reported counts. Every prompt asks them not to. Rather than quietly stripping
   that and calling it compliance, both readings are reported, and the difference between them is
   a number in its own right: how much of the failure is counting and how much is packaging.
