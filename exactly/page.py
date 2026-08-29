@@ -27,6 +27,8 @@ body { margin: 0; padding: 2rem 1.25rem 4rem; background: var(--bg); color: var(
 main { max-width: 62rem; margin: 0 auto; }
 h1 { font-size: 1.9rem; margin: 0 0 .3rem; letter-spacing: -.01em; }
 h2 { font-size: 1.15rem; margin: 2.4rem 0 .6rem; }
+h3 { font-size: .95rem; margin: 1.6rem 0 .4rem; font-weight: 600; }
+h3 span { color: var(--dim); font-weight: 400; font-size: .82rem; }
 p { max-width: 46rem; }
 .sub { color: var(--dim); margin: 0 0 1.6rem; }
 .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px;
@@ -130,6 +132,60 @@ def _sensitivity_table(systems: list) -> str:
            "</tbody></table></div>"
 
 
+# The systems the per-dialect detail is shown for. The degenerate baselines are left out of this
+# one table only: `blank` and `ignore` score near zero under every dialect, so their rows would be
+# a wall of zeroes obscuring the systems whose sensitivity is the point.
+DETAIL_SYSTEMS = ("reference", "filler_keyword", "approximate")
+
+
+def _dialect_tables(systems: list) -> str:
+    """One small table per dimension, showing what each defensible reading actually scores.
+
+    The spread alone hides which alternative caused it, and the answer is often a single extreme
+    dialect rather than a general wobble. Publishing the whole row lets a reader disagree with the
+    published choice and read off what their own choice would have scored.
+    """
+    shown = [board for board in systems
+             if board["kind"] == "model" or board["system"] in DETAIL_SYSTEMS]
+    shown.sort(key=lambda board: (board["kind"] != "model", -board["strict"]["overall"]["rate"]))
+    dimensions = sorted({name for board in shown for name in board["sensitivity"]
+                         if name != "worst"})
+    blocks = []
+    for dimension in dimensions:
+        dialects, size = [], 0
+        for board in shown:
+            entry = board["sensitivity"].get(dimension)
+            if entry:
+                dialects = list(entry["by_dialect"])
+                size = entry["n"]
+                break
+        if not dialects:
+            continue
+        head = "<tr><th>system</th>" + "".join(
+            f"<th>{html.escape(name)}</th>" for name in dialects) + "<th>spread</th></tr>"
+        rows = []
+        for board in shown:
+            entry = board["sensitivity"].get(dimension)
+            if not entry:
+                continue
+            cells = []
+            for dialect in dialects:
+                value = entry["by_dialect"].get(dialect)
+                klass = "good" if dialect == entry["published"] else None
+                cells.append(_cell(_pct(value), klass))
+            spread = entry["spread_points"]
+            cells.append(_cell(f"{spread:.1f} pt",
+                               "bad" if spread >= 10 else ("warn" if spread >= 2 else None)))
+            rows.append(f'<tr class="{board["kind"]}">' + _cell(board["system"])
+                        + "".join(cells) + "</tr>")
+        blocks.append(
+            f"<h3>{html.escape(dimension)} <span>over {size} items, published reading in "
+            f"green</span></h3>"
+            f'<div class="scroll"><table><thead>{head}</thead><tbody>{"".join(rows)}'
+            "</tbody></table></div>")
+    return "".join(blocks)
+
+
 def _cards(report_data: dict) -> str:
     head = report_data["headline"]
     dataset = report_data["dataset"]
@@ -184,6 +240,14 @@ rule for that dimension is swapped for another defensible one and nothing else c
 measured on the affected items only. A large number means the leaderboard is partly a measurement
 of the splitter rather than of the model, which is worth more than the leaderboard.</p>
 {_sensitivity_table(systems)}
+<h2>Rule sensitivity in detail</h2>
+<p>What each defensible reading actually scores, dimension by dimension. The largest single swing
+in the whole report comes from the character rule, where counting only non-whitespace characters
+takes the reference answers from full marks to nothing, because every one of them was composed to
+hit a code point target with the spaces included. That is the honest shape of the problem. A
+character constraint is close to meaningless without a stated definition, and a benchmark that
+picks one silently is publishing its own choice as a property of the models.</p>
+{_dialect_tables(systems)}
 <h2>The published rules</h2>
 <p>Every prompt carries, in the prompt, the exact rule its answer is graded under, because a model
 cannot comply with a rule it was not told. The dialect in force for each dimension:</p>

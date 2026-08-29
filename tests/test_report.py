@@ -34,6 +34,7 @@ def synthetic_board(name, kind, rate, spread):
                                   "spread_points": spread, "lowest": "hyphen_split",
                                   "highest": "plain"},
                         "worst": {"dimension": "words", "spread_points": spread,
+                                  "median_spread_points": round(spread / 2, 2),
                                   "from": "hyphen_split", "to": "plain"}},
     }
 
@@ -58,6 +59,13 @@ class Headline(unittest.TestCase):
     def test_the_filler_ceiling_is_quoted_separately(self):
         self.assertEqual(SYNTHETIC["headline"]["filler_keyword_rate"], 1.0)
 
+    def test_the_median_sensitivity_is_reported_next_to_the_largest(self):
+        """One extreme dialect can dominate the maximum, so the median across dimensions is
+        published beside it rather than instead of it."""
+        medians = SYNTHETIC["headline"]["median_sensitivity_across_dimensions"]
+        self.assertEqual(medians["reference"], 6.25)
+        self.assertEqual(set(medians), {board["system"] for board in SYNTHETIC["systems"]})
+
     def test_the_largest_sensitivity_is_the_largest_one(self):
         self.assertEqual(SYNTHETIC["headline"]["largest_sensitivity"]["spread_points"], 12.5)
         self.assertEqual(SYNTHETIC["headline"]["largest_sensitivity"]["system"], "reference")
@@ -71,6 +79,12 @@ class Page(unittest.TestCase):
     def test_the_page_shows_the_numbers_it_was_given(self):
         for needle in ("42.0%", "7.2 pt", "12.5 pt", "toy-model", "abc123def456abc7", "500"):
             self.assertIn(needle, self.html, f"the page never mentions {needle!r}")
+
+    def test_the_page_shows_each_dialect_rate_and_not_only_the_spread(self):
+        """The spread hides which alternative reading caused it, so the row is published too."""
+        self.assertIn("Rule sensitivity in detail", self.html)
+        self.assertIn("hyphen_split", self.html)
+        self.assertIn("published reading in green", self.html)
 
     def test_the_page_is_self_contained_and_has_no_script(self):
         for forbidden in ("<script", "http://", "cdn.", "src=\"http"):

@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import statistics
 
 from . import baselines, generate, grade, recorded, rules
 
@@ -94,6 +95,12 @@ def sensitivity_for(items: list, answers: dict) -> dict:
         if spread > worst["spread_points"]:
             worst = {"dimension": dimension, "spread_points": spread,
                      "from": values[0][0], "to": values[-1][0]}
+    spreads = sorted(entry["spread_points"] for key, entry in out.items() if key != "worst")
+    # The median as well as the maximum, because one dialect can dominate and hide the rest. The
+    # `no_whitespace` reading of "characters" is the case in point: it moves every character
+    # count by the number of spaces in the answer, so it takes the reference from 100 to 0 and
+    # would be the only number anybody read if the maximum were quoted alone.
+    worst["median_spread_points"] = round(statistics.median(spreads), 2) if spreads else 0.0
     out["worst"] = worst
     return out
 
@@ -160,6 +167,9 @@ def headline(boards: list) -> dict:
             "spread_points": biggest[1]["spread_points"],
             "from": biggest[1]["from"], "to": biggest[1]["to"],
         } if biggest else None,
+        "median_sensitivity_across_dimensions": {
+            board["system"]: board["sensitivity"]["worst"]["median_spread_points"]
+            for board in boards},
     }
 
 
