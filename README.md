@@ -251,7 +251,7 @@ block exactly; nothing variable is printed, no elapsed times and no temporary pa
 ```
 exactly: exact-count compliance, verify
 
-     tracked files: 54
+     tracked files: 55
 ok   the repository has a working tree to verify
 ok   unit tests: 158 passed
 ok   the suite is large enough to mean something
@@ -270,7 +270,8 @@ ok   the fingerprint does not depend on where the code lives
      fingerprint: fe3d23ea8c316fb0907ac549cf449ece0b7c8d4d3ef29c85c3980274c3b49cdb
 ok   an independent recount agrees with every headline number
 ok   the privacy scan finds its positive controls and nothing else
-ok   no tracked file is larger than a megabyte
+FAIL no tracked file is larger than a megabyte
+       fixtures/responses/qwen3.5_9b.jsonl 1588k
 ok   the README exists
 ok   the README carries a Status section
 ok   the README carries a Unfinished section
@@ -281,8 +282,9 @@ ok   the README prose has no scaffold markers left in it
 ok   the README's own counts still match what they count
 ok   the verify run did not modify the tree it verifies
 
-steps passed: 18, failed: 0
-VERIFY PASSED: exactly
+steps passed: 17, failed: 1
+VERIFY FAILED: exactly
+  - no tracked file is larger than a megabyte
 ```
 
 ## Unfinished
