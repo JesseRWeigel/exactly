@@ -186,6 +186,16 @@ class FixtureLoader(unittest.TestCase):
             with self.assertRaises(recorded.StaleFixture):
                 recorded.responses("toy", self.items, directory)
 
+    def test_a_fixture_that_misses_an_item_is_refused_rather_than_scored(self):
+        two = self.items + [{"id": "a-002", "prompt": "count to four", "target": 4,
+                             "dimension": "words", "mode": "exact", "unique": False,
+                             "keyword": "yeast", "family": "f"}]
+        with tempfile.TemporaryDirectory() as directory:
+            self._write(directory, [{"id": "a-001", "response": "yeast rises here",
+                                     "prompt_sha256": recorded.prompt_digest("count to three")}])
+            with self.assertRaises(recorded.PartialFixture):
+                recorded.responses("toy", two, directory)
+
     def test_a_mostly_truncated_fixture_is_refused_rather_than_scored(self):
         with tempfile.TemporaryDirectory() as directory:
             self._write(directory, [{"id": "a-001", "response": "yeast", "truncated": True,

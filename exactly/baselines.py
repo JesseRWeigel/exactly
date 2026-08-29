@@ -28,8 +28,12 @@ What each one is for:
 from __future__ import annotations
 
 import hashlib
+import json
+import pathlib
 
-from . import compose, rules
+from . import compose, generate, rules
+
+ANSWERS = pathlib.Path(__file__).resolve().parent.parent / "results" / "answers"
 
 IGNORED_PARAGRAPH = (
     "There is more to say about this than fits in a short reply, and most of it depends on "
@@ -122,6 +126,28 @@ def answer(name: str, item: dict) -> str:
 
 def responses(name: str, items: list) -> dict:
     return {item["id"]: answer(name, item) for item in items}
+
+
+def write_answers(items=None, directory=None) -> list:
+    """Commit what every baseline actually said, one file per system.
+
+    These files are the raw material `scripts/check_independent.py` grades with its own counters.
+    Without them the independent check could only re-derive the model rows, and the reference
+    control, which is the single most load-bearing number in the project, would rest on the
+    package checking itself. `verify.sh` regenerates these and diffs the bytes, so they cannot
+    drift away from the composer that claims to produce them.
+    """
+    items = generate.load()[0] if items is None else items
+    directory = ANSWERS if directory is None else pathlib.Path(directory)
+    directory.mkdir(parents=True, exist_ok=True)
+    written = []
+    for name in ("reference",) + NAMES:
+        rows = [{"id": item["id"], "response": answer(name, item)} for item in items]
+        path = directory / (name + ".jsonl")
+        path.write_text("".join(json.dumps(row, sort_keys=True, ensure_ascii=False) + "\n"
+                                for row in rows), encoding="utf-8")
+        written.append(path)
+    return written
 
 
 def run(items: list, names=None, ruleset=None, lenient: bool = False) -> dict:

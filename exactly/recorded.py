@@ -42,6 +42,16 @@ class TruncatedFixture(RuntimeError):
     """Too many recorded answers ran out of generation budget to be worth scoring."""
 
 
+class PartialFixture(RuntimeError):
+    """A fixture that does not cover the whole dataset.
+
+    Refused rather than scored on what it happens to contain. The families are not the same
+    difficulty, and a partial file is a prefix of the dataset order, so scoring one would report
+    the score of whichever families the run reached before it stopped. A model that cannot be
+    recorded in full belongs off the board, not on it with a footnote.
+    """
+
+
 def prompt_digest(prompt: str) -> str:
     return hashlib.sha256(prompt.encode("utf-8")).hexdigest()
 
@@ -67,12 +77,13 @@ def read(name: str, directory=None) -> dict:
 
 
 def responses(name: str, items: list, directory=None) -> tuple:
-    """(responses by item id, notes). Raises `StaleFixture` if a digest does not match.
+    """(responses by item id, notes), or one of three refusals.
 
-    An item with no row at all is left out of the mapping rather than filled with an empty
-    string, because `grade.score` already treats a missing id as an empty answer and counts it as
-    a failure. Recording that separately keeps "the model was never asked" distinguishable from
-    "the model answered with nothing", which are different facts about a run.
+    `StaleFixture` when a recorded answer's prompt digest no longer matches the prompt with that
+    id, `PartialFixture` when the file does not cover the whole dataset, and `TruncatedFixture`
+    when too many answers stopped at the generation budget. All three are refusals rather than
+    warnings, because each one produces a number that looks completely ordinary on a leaderboard
+    and means something other than what the column header says.
     """
     rows = read(name, directory)
     wanted = {item["id"]: item["prompt"] for item in items}
@@ -90,6 +101,11 @@ def responses(name: str, items: list, directory=None) -> tuple:
     answered = {item_id: row.get("response", "") for item_id, row in rows.items()}
     errors = sorted(item_id for item_id, row in rows.items() if row.get("error"))
     missing = sorted(item_id for item_id in wanted if item_id not in rows)
+    if missing:
+        raise PartialFixture(
+            f"{name}: {len(missing)} of {len(wanted)} items have no recorded answer, starting at "
+            f"{missing[0]}. Finish the recording or remove the fixture; a partial file scores "
+            f"whichever families the run reached, not the model.")
     truncated = sorted(item_id for item_id, row in rows.items() if row.get("truncated"))
     share = round(len(truncated) / len(rows), 4) if rows else 0.0
     if share > TRUNCATION_LIMIT:
