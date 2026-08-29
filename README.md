@@ -260,9 +260,10 @@ ok   the README Status quotes this run's success line
 ok   the README Status quotes this run's test count
 ok   the README Status quotes this run's fingerprint
 ok   the README prose has no scaffold markers left in it
+ok   the README's own counts still match what they count
 ok   the verify run did not modify the tree it verifies
 
-steps passed: 17, failed: 0
+steps passed: 18, failed: 0
 VERIFY PASSED: exactly
 ```
 
