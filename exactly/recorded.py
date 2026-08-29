@@ -9,6 +9,14 @@ completely normal.
 
 So the check is not optional and it is not a warning. A fixture whose prompt digest does not match
 the prompt with the same id is a hard failure, named and counted, and `verify.sh` fails on it.
+
+The second guard here is about truncation. A response that stopped because it exhausted the
+generation budget is not an attempt at the constraint, it is a sentence cut in half, and grading
+it as a counting failure turns the leaderboard into a measurement of `num_predict`. Measured on
+this workstation, gpt-oss:20b accepts `think: false` and then spends all 1200 tokens of the
+budget on a hidden reasoning channel ollama strips out, returning nineteen visible characters.
+Every fixture row therefore records why generation stopped, the truncated share is reported next
+to the score, and a fixture over `TRUNCATION_LIMIT` is refused rather than quietly scored.
 """
 
 from __future__ import annotations
@@ -20,8 +28,18 @@ import pathlib
 DIR = pathlib.Path(__file__).resolve().parent.parent / "fixtures" / "responses"
 
 
+# Above this share of responses cut off by the generation budget, the fixture is measuring the
+# budget rather than the model and is refused. Some truncation is tolerable and worth reporting;
+# a fixture that is mostly truncation is not a record of anything.
+TRUNCATION_LIMIT = 0.10
+
+
 class StaleFixture(RuntimeError):
     """A recorded answer belongs to a prompt that no longer exists in this form."""
+
+
+class TruncatedFixture(RuntimeError):
+    """Too many recorded answers ran out of generation budget to be worth scoring."""
 
 
 def prompt_digest(prompt: str) -> str:
@@ -72,10 +90,21 @@ def responses(name: str, items: list, directory=None) -> tuple:
     answered = {item_id: row.get("response", "") for item_id, row in rows.items()}
     errors = sorted(item_id for item_id, row in rows.items() if row.get("error"))
     missing = sorted(item_id for item_id in wanted if item_id not in rows)
+    truncated = sorted(item_id for item_id, row in rows.items() if row.get("truncated"))
+    share = round(len(truncated) / len(rows), 4) if rows else 0.0
+    if share > TRUNCATION_LIMIT:
+        raise TruncatedFixture(
+            f"{name}: {len(truncated)} of {len(rows)} responses ({share * 100:.1f}%) stopped at "
+            f"the generation budget, above the {TRUNCATION_LIMIT * 100:.0f}% limit. Re-record "
+            f"with a larger --num-predict; scoring this would measure the budget, not the model.")
+    reasoning = [row.get("thinking_chars", 0) for row in rows.values()]
     notes = {
         "rows": len(rows),
         "missing": len(missing),
         "transport_errors": len(errors),
+        "truncated": len(truncated),
+        "truncated_share": share,
+        "max_thinking_chars": max(reasoning) if reasoning else 0,
         "first_missing": missing[0] if missing else None,
     }
     return answered, notes
