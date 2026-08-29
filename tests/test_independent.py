@@ -108,6 +108,35 @@ class Keyword(unittest.TestCase):
         self.assertFalse(independent.keyword_present(text, "yeast"))
 
 
+class CountVerdict(unittest.TestCase):
+    """The count verdict is about the count alone, in both implementations.
+
+    Folding emptiness into it looks harmless and is not: under an upper bound zero of anything
+    satisfies the count, and the `blank` baseline satisfying the count on 40 of the 500 items is
+    how the leaderboard shows that `no more than 4 sentences` is satisfiable by silence. The
+    checker's first version returned False for an empty answer and disagreed on exactly those 40.
+    """
+
+    def _item(self, mode, target=4):
+        return {"id": "t-1", "family": "f", "dimension": "sentences", "mode": mode,
+                "target": target, "unique": False, "keyword": "yeast"}
+
+    def test_an_empty_answer_satisfies_an_upper_bound_in_both(self):
+        item = self._item("at_most")
+        self.assertTrue(grade.grade(item, "")["count_ok"])
+        self.assertTrue(independent.count_ok(item, ""))
+
+    def test_an_empty_answer_is_still_not_compliant_in_both(self):
+        item = self._item("at_most")
+        self.assertFalse(grade.grade(item, "")["compliant"])
+        self.assertFalse(independent.compliant(item, ""))
+
+    def test_an_empty_answer_fails_an_exact_target_in_both(self):
+        item = self._item("exact")
+        self.assertFalse(grade.grade(item, "")["count_ok"])
+        self.assertFalse(independent.count_ok(item, ""))
+
+
 class Duplicates(unittest.TestCase):
     def test_the_two_duplicate_detectors_agree(self):
         cases = ("- Red apples.\n- red apples\n- red cars",

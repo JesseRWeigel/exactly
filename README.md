@@ -140,7 +140,7 @@ pretending otherwise.
 `reference` scoring 100 is the control that proves an answer can satisfy it. Both run on every
 verify.
 
-## Three things the measurements found
+## Four things the measurements found
 
 **`think: false` does not stop gpt-oss:20b reasoning, and the reasoning eats the whole budget.**
 The first recording attempt produced answers like `Stonemasons rely on`, three words against a
@@ -162,6 +162,15 @@ was the one at fault: it split tokens on whitespace and the ASCII hyphen only, s
 keyword went missing. The published rule says an em dash separates the tokens on either side of
 it, so both implementations now do. Three answers is 0.6% of one fixture, and a recount that
 merely reported a total would have shown 322 against 325 with no way to see which three.
+
+**The two implementations also disagreed about what a count verdict means.** Comparing four
+tallies per system instead of one total, the recount said the `blank` baseline satisfied the count
+on 0 items and the package said 40. The package was right. Under `no more than 4 sentences`, zero
+sentences satisfies the count, and the empty answer fails on the required keyword instead. The
+checker had folded emptiness into the count verdict, which erased the very thing that row exists
+to show: an upper bound is satisfiable by silence. Two disagreements out of the four tallies were
+found only because they are compared separately, and a single `compliant` total would have hidden
+both.
 
 **The decimal guard in the sentence splitter was unreachable.** A sabotage that disabled the test
 for a full stop between two digits could not move a single number in the fingerprint. The reason
@@ -217,7 +226,7 @@ docs/index.html          the published page, generated from the leaderboard
 `scripts/verify.sh` is the gate and its exit code is the result. No step prints success for
 something it did not run, and a step that cannot run is a failure rather than a skip.
 
-- **158 unit tests.** Every counting decision is an assertion with the disagreeing reading named
+- **161 unit tests.** Every counting decision is an assertion with the disagreeing reading named
   next to it, so the file doubles as the specification.
 - **The reference control.** All 500 composed answers must be graded compliant, and the off-by-one
   variants must all fail. A grader nothing can satisfy is a bug that looks exactly like a hard
@@ -231,9 +240,10 @@ something it did not run, and a step that cannot run is a failure rather than a 
 - **An independent recount** that imports nothing from the package, proved by walking its own
   import graph with `ast` rather than by grep, against 11 probes that declare on their first line
   whether they must be accepted or refused. It reimplements the published rules from the rule text
-  and recomputes the reference control, the baselines, every model total and the word sensitivity
-  spread. The two implementations agree on all 500 composed answers and on every recorded model
-  response.
+  and recomputes the reference control, the word sensitivity spread, and FOUR SEPARATE TALLIES for
+  every system on the board: compliance, the count, the keyword and uniqueness. Four rather than
+  one, because a single total can agree while two errors cancel, and both real disagreements this
+  project found showed up in a tally rather than in the total.
 - **A privacy scan** with 7 planted positive controls it must find and 5 negative controls it must
   ignore. One positive control hides a token behind a NUL byte, because `grep -I` treats such a
   file as binary and skips it while reporting the same "nothing found" as a real read.
@@ -253,7 +263,7 @@ exactly: exact-count compliance, verify
 
      tracked files: 55
 ok   the repository has a working tree to verify
-ok   unit tests: 158 passed
+ok   unit tests: 161 passed
 ok   the suite is large enough to mean something
 ok   every derived file regenerates byte for byte
   ok   regenerate build

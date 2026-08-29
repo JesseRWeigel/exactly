@@ -22,7 +22,7 @@ What it recomputes, all of it from files in git and none of it by calling the pa
   the off-by-one control     500 answers one unit out, none of which may satisfy the count
   the filler controls        the count is mechanical, so `filler` must hit every count and no
                              keyword, and `filler_keyword` must satisfy everything
-  every recorded model       its compliance total, recounted, against what the leaderboard claims
+  every recorded model       four separate tallies, recounted, against what the leaderboard claims
   the words sensitivity      the spread between the published word rule and `hyphen_split`
 
 Exit code 0 means every recount agreed. Any disagreement is printed with both numbers and exits 1.
@@ -348,9 +348,16 @@ def compliant(item: dict, response: str) -> bool:
 
 
 def count_ok(item: dict, response: str) -> bool:
+    """Whether the COUNT satisfies the constraint, and nothing else.
+
+    An empty answer is not special here, and that matters. Under an upper bound, zero of anything
+    satisfies the count, so the empty response passes this and fails `compliant` on the keyword.
+    Reporting the two separately is the point: the `blank` baseline satisfying the count on 40 of
+    the 500 items is how the leaderboard shows that `no more than 4 sentences` is satisfiable by
+    silence. The first version of this function returned False for an empty answer, which folded
+    emptiness into the count verdict and disagreed with the package on exactly those 40 rows.
+    """
     text = (response or "").strip()
-    if not text:
-        return False
     observed = COUNTERS[item["dimension"]](text)
     if item["mode"] == "exact":
         return observed == item["target"]
@@ -487,13 +494,35 @@ def run(results: list) -> None:
           recounted_spread, claimed["reference"]["sensitivity"]["words"]["spread_points"])
     print(f"  words dialect rates, recounted over {len(words_items)} items: {rates}")
 
+    def tallies(rows):
+        """Four independent totals, not one.
+
+        A single `compliant` total can agree while two errors cancel: one answer wrongly passed on
+        the count and another wrongly failed on the keyword sum to the same number. Comparing the
+        count, the keyword and the uniqueness tallies separately makes that cancellation much
+        harder, and it is what caught the one real disagreement in this project, where the
+        checker's keyword matcher missed a word sitting between two em dashes.
+        """
+        return {
+            "compliant": sum(1 for item, text in rows if compliant(item, text)),
+            "count_ok": sum(1 for item, text in rows if count_ok(item, text)),
+            "keyword_ok": sum(1 for item, text in rows
+                              if keyword_present((text or "").strip(), item["keyword"])),
+            "unique_ok": sum(1 for item, text in rows
+                             if not (item["unique"]
+                                     and has_duplicate_items((text or "").strip()))),
+        }
+
+    def compare(label, rows, overall):
+        mine = tallies(rows)
+        for field, got in sorted(mine.items()):
+            check(results, f"leaderboard agrees with the recount of {field} for {label}",
+                  got, overall[field])
+
     for name, entry in sorted(claimed.items()):
         if entry["kind"] != "baseline":
             continue
-        rows = graded(name)
-        check(results, f"leaderboard agrees with the recount for baseline {name}",
-              sum(1 for item, text in rows if compliant(item, text)),
-              entry["strict"]["overall"]["compliant"])
+        compare(f"baseline {name}", graded(name), entry["strict"]["overall"])
 
     fixtures = sorted((ROOT / "fixtures" / "responses").glob("*.jsonl"))
     if not fixtures:
@@ -503,13 +532,13 @@ def run(results: list) -> None:
     for path in fixtures:
         rows = read_jsonl(path)
         answered = {row["id"]: row.get("response", "") for row in rows}
-        recount = sum(1 for item in items if compliant(item, answered.get(item["id"], "")))
         entry = claimed.get(path.stem)
         if entry is None:
             check(results, f"{path.stem} appears on the leaderboard", False, True)
             continue
-        check(results, f"leaderboard agrees with the recount for model {path.stem}",
-              recount, entry["strict"]["overall"]["compliant"])
+        compare(f"model {path.stem}",
+                [(item, answered.get(item["id"], "")) for item in items],
+                entry["strict"]["overall"])
 
 def main() -> int:
     results = []
