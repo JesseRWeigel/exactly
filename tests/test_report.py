@@ -105,6 +105,40 @@ class Page(unittest.TestCase):
             self.assertIn(dimension, self.html)
             self.assertIn(dialect, self.html)
 
+    def test_the_page_is_well_formed_and_every_tag_closes(self):
+        """A page with an unbalanced tag can still contain every string a substring check looks
+        for, and render as one long paragraph. This walks the markup instead."""
+        import html.parser
+
+        void = {"meta", "br", "hr", "img", "input", "link", "source", "wbr"}
+
+        class Walker(html.parser.HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.stack = []
+                self.problems = []
+                self.tags = {}
+
+            def handle_starttag(self, tag, attrs):
+                self.tags[tag] = self.tags.get(tag, 0) + 1
+                if tag not in void:
+                    self.stack.append(tag)
+
+            def handle_endtag(self, tag):
+                if tag in void:
+                    return
+                if not self.stack or self.stack[-1] != tag:
+                    self.problems.append(f"</{tag}> closes {self.stack[-1:] or ['nothing']}")
+                    return
+                self.stack.pop()
+
+        walker = Walker()
+        walker.feed(self.html)
+        self.assertEqual(walker.problems, [])
+        self.assertEqual(walker.stack, [])
+        self.assertGreaterEqual(walker.tags.get("table", 0), 3)
+        self.assertGreater(walker.tags.get("td", 0), 20)
+
     def test_writing_the_page_reads_the_committed_results(self):
         with tempfile.TemporaryDirectory() as directory:
             results = pathlib.Path(directory) / "results"
