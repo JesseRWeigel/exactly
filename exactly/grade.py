@@ -157,6 +157,13 @@ def error_profile(rows: list) -> dict:
         "mean_error": round(statistics.fmean(errors), 3) if errors else None,
         "median_error": statistics.median(errors) if errors else None,
         "mean_abs_error": round(statistics.fmean(abs(v) for v in errors), 3) if errors else None,
+        # A robust companion to the mean, over the MISSES, because a median taken over every row
+        # is 0 for any system that is mostly compliant and says nothing about how wrong the wrong
+        # ones are. It is here because one model answered a request for 36 words with 2646 and was
+        # still going when the budget ran out; forty-five answers like that drag its mean signed
+        # error to +1187, and a reader given only the mean would think it overshoots everything.
+        "median_abs_error_of_misses": statistics.median(abs(v) for v in misses) if misses
+        else None,
         "median_abs_relative_error": round(statistics.median(relative), 4) if relative else None,
         "histogram": counts,
     }

@@ -105,10 +105,40 @@ def sensitivity_for(items: list, answers: dict) -> dict:
     return out
 
 
+def undetermined(rows: list, truncated_ids) -> int:
+    """Of the answers cut off at the generation budget, how many are still in doubt.
+
+    A truncated answer is only a problem for the leaderboard when finishing it could have changed
+    the verdict. Asked for exactly 36 words, qwen3.5:9b produced 2646 and was still going when the
+    budget ran out; no amount of further text makes that compliant, so the row is graded and the
+    truncation is a fact about the model. An answer cut off while still SHORT of an exact target,
+    or still inside an upper bound, is the other case, and those are the ones counted here and
+    published beside the score. The count is about the COUNT verdict alone; a missing keyword
+    could also have arrived later, and that is stated rather than folded in.
+    """
+    wanted = set(truncated_ids or ())
+    open_ended = 0
+    for row in rows:
+        if row["id"] not in wanted:
+            continue
+        if row["mode"] == "exact" and row["observed"] < row["target"]:
+            open_ended += 1
+        elif row["mode"] == "at_most" and row["observed"] <= row["target"]:
+            open_ended += 1
+        elif row["mode"] == "at_least" and row["observed"] < row["target"]:
+            open_ended += 1
+    return open_ended
+
+
 def evaluate(items: list, name: str, kind: str, answers: dict, notes: dict) -> dict:
     strict = grade.score(items, answers)
     lenient = grade.score(items, answers, lenient=True)
     unwrapped = sum(1 for row in lenient["rows"] if row["unwrapped"])
+    notes = dict(notes)
+    if notes.get("truncated"):
+        notes["truncated_undetermined"] = undetermined(strict["rows"],
+                                                       notes.get("truncated_ids"))
+    notes.pop("truncated_ids", None)
     return {
         "system": name,
         "kind": kind,

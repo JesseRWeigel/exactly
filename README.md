@@ -41,42 +41,43 @@ of them. The spread is published beside the score.
 
 ## What the numbers say
 
-Two things, and the second was a surprise.
+Three things, and the last two were surprises.
 
-**Models can count what they emit as units, and cannot count words or characters.** The same two
-models that produce exactly the asked-for number of sentences 99% and 87% of the time produce the
-asked-for number of words 1% and 6% of the time, and the asked-for number of characters never. A
-bullet, a line, a paragraph and a sentence are things a model finishes and starts; a word is a
-thing it has to keep a running total of while writing, and a character is worse. The families are
-kept apart on the leaderboard for exactly this reason.
+**Models can count what they emit as units, and cannot count words or characters.** All three
+models produce exactly the asked-for number of sentences between 87% and 99% of the time. All
+three produce exactly the asked-for number of words between 1% and 6% of the time, and the
+asked-for number of characters never, in 150 attempts. A bullet, a line, a paragraph and a
+sentence are things a model finishes and starts. A word is a thing it has to keep a running total
+of while it writes, and a character is worse. The families are kept apart on the leaderboard for
+exactly this reason.
 
-| family | what it asks for | gemma4:e4b | llama3.2:3b |
-|---|---|---|---|
-| `sentences_exact` | exactly N sentences | 98.6% | 87.1% |
-| `paragraphs_exact` | exactly N paragraphs | 95.6% | 100.0% |
-| `bullets_exact` | exactly N bullets | 95.7% | 87.1% |
-| `lines_exact` | exactly N lines | 93.3% | 88.9% |
-| `words_at_least` | at least N words | 92.5% | 77.5% |
-| `sentences_at_most` | no more than N sentences | 85.0% | 90.0% |
-| `unique_items` | N bullets, no repeats | 53.3% | 71.7% |
-| `words_exact` | exactly N words | 1.3% | 6.3% |
-| `chars_exact` | exactly N characters | 0.0% | 0.0% |
+| family | what it asks for | gemma4:e4b | llama3.2:3b | qwen3.5:9b |
+|---|---|---|---|---|
+| `sentences_exact` | exactly N sentences | 98.6% | 87.1% | 97.1% |
+| `paragraphs_exact` | exactly N paragraphs | 95.6% | 100.0% | 93.3% |
+| `bullets_exact` | exactly N bullets | 95.7% | 87.1% | 85.7% |
+| `words_at_least` | at least N words | 92.5% | 77.5% | 97.5% |
+| `sentences_at_most` | no more than N sentences | 85.0% | 90.0% | 95.0% |
+| `lines_exact` | exactly N lines | 93.3% | 88.9% | 48.9% |
+| `unique_items` | N bullets, no repeats | 53.3% | 71.7% | 71.7% |
+| `words_exact` | exactly N words | 1.2% | 6.2% | 2.5% |
+| `chars_exact` | exactly N characters | 0.0% | 0.0% | 0.0% |
 
 **Rule sensitivity turns out to be mostly a property of the system being measured.** This is the
-number the
-project exists to report, and the honest version of it is more interesting than the one that was
-expected. Swapping the word rule for `hyphen_split`, where `state-of-the-art` becomes four words,
-moves both models by 0.83 points out of 120 items. Swapping the sentence rule for a naive splitter
-that breaks at every full stop moves gemma4:e4b by 0.0 points and llama3.2:3b by 1.8.
+number the project exists to report, and the honest version of it is more interesting than the one
+that was expected. Swapping the word rule for `hyphen_split`, where `state-of-the-art` becomes
+four words, moves gemma4:e4b and llama3.2:3b by 0.83 points across 120 items and qwen3.5:9b by
+0.00. Swapping the sentence rule for a naive splitter that breaks at every full stop, including
+the one in `Dr.`, moves the three models by 0.00, 1.82 and 0.00 points.
 
-The same swaps move the reference answers, which comply exactly, by 90.9 points and 53.9 points.
+The same two swaps move the reference answers, which comply exactly, by 0.00 and 90.91 points, and
+swapping the bullet rule to count nested sub-bullets moves them 53.85.
 
 That is the finding. A system that hits the target on the nose sits on the rule boundary, so every
-boundary decision changes its verdict. A model that misses by eight words is nowhere near the
-boundary and is nearly immune to which definition you picked. So the leaderboard here is only
-slightly a
-measurement of the splitter, and the reason for that is unflattering to the models. They are not
-close enough to the target for the definition to matter.
+boundary decision changes its verdict. A model whose typical miss is 6 to 17 units is nowhere near
+that boundary and is close to immune to which definition you picked. So the leaderboard here is
+only slightly a measurement of the splitter, and the reason for that is unflattering to the
+models. They are not close enough to the target for the definition to matter.
 
 Two rules are exceptions and both are worth stating plainly.
 
@@ -89,15 +90,23 @@ instruction unless the definition travels with it.
 **The duplicate rule is the second.** Under the published reading, two list items are the same
 item when they match after casefolding, dropping punctuation and collapsing whitespace. Under a
 first-word reading, `red apples` and `red cars` are the same item, and compliance on that family
-falls by 78 to 97 points for every system on the board. That reading is aggressive and it is on
+falls by 73 to 97 points for every system on the board. That reading is aggressive and it is on
 the board precisely because somebody would pick it.
 
-**Models err low, and the misses have a long tail on the short side.** Over the 420 exact-target
-items, llama3.2:3b undershoots 111 times and overshoots 36, and 20% of its misses are off by
-exactly one. The rest is lopsided: 49 answers ten or more units short against 19 ten or more units
-long. gemma4:e4b is the same shape, 115 under against 40 over, with 18% of misses off by one. Off
-by one and off by forty are different failures and a pass rate cannot tell them apart, so every
-row carries a signed error and the report keeps the whole histogram.
+**Two of the three err low, and the third fails in a completely different shape.** Over the 420
+exact-target items, llama3.2:3b undershoots 111 times against 36 overshoots, with 20% of its
+misses off by exactly one and a long tail of 49 answers ten or more units short. gemma4:e4b is the
+same shape, 115 under against 40 over, 18% off by one.
+
+qwen3.5:9b is the opposite and is the most interesting row on the board. It is the most PRECISE of
+the three when it is close, with 30% of its misses off by exactly one, and it is the only one that
+fails catastrophically: 89 answers ten or more units over, of which 45 ran past a 4000 token
+generation budget without stopping. Asked for exactly 36 words it produced 2646 and was still
+going. Its median miss is 17 units where the others sit at 6 and 8, and its mean signed error is
++1187, which is a number about the runaways rather than about its aim. Off by one and off by two
+thousand are different failures, a pass rate cannot tell them apart, and neither can a mean, so
+every row carries a signed error and the report keeps the whole histogram and the median of the
+misses beside it.
 
 The signed error is reported over the exact-target families ALONE, and that correction flips the
 sign of the headline. Pooling the bounds in made llama3.2:3b, which undershoots three times as
@@ -113,6 +122,7 @@ same model reports -2.19, which is what it actually does.
 | `filler_keyword` | emits the requested count of the word `item`, keyword dropped in | 100.0% |
 | gemma4:e4b | a real model | 65.0% |
 | llama3.2:3b | a real model | 64.4% |
+| qwen3.5:9b | a real model | 62.8% |
 | `approximate` | the reference, displaced by a deterministic amount | 10.4% |
 | `filler` | the requested count of the word `item`, nothing else | 0.0% |
 | `ignore` | one fixed paragraph, the same for every prompt | 0.0% |
@@ -130,7 +140,7 @@ pretending otherwise.
 `reference` scoring 100 is the control that proves an answer can satisfy it. Both run on every
 verify.
 
-## Two real bugs the measurements found
+## Three things the measurements found
 
 **`think: false` does not stop gpt-oss:20b reasoning, and the reasoning eats the whole budget.**
 The first recording attempt produced answers like `Stonemasons rely on`, three words against a
@@ -144,6 +154,14 @@ and 721 visible ones. The transcript is in `fixtures/evidence/`. Every fixture r
 `done_reason`, `eval_count` and `thinking_chars`, a row cut off at the budget is flagged, and
 `exactly.recorded` refuses a fixture whose truncated share is over 10% rather than scoring it and
 publishing a low number. gpt-oss:20b is off the leaderboard for this reason.
+
+**The independent recount was wrong about three answers, and the cross-check found it.** The
+package and the second implementation disagreed on 3 of gemma4:e4b's 500 responses. The checker
+was the one at fault: it split tokens on whitespace and the ASCII hyphen only, so
+`**horsehair**` sitting between two em dashes cleaned down to `horsehairis` and the required
+keyword went missing. The published rule says an em dash separates the tokens on either side of
+it, so both implementations now do. Three answers is 0.6% of one fixture, and a recount that
+merely reported a total would have shown 322 against 325 with no way to see which three.
 
 **The decimal guard in the sentence splitter was unreachable.** A sabotage that disabled the test
 for a full stop between two digits could not move a single number in the fingerprint. The reason
@@ -249,7 +267,7 @@ ok   every derived file regenerates byte for byte
   ok   results/answers: 7 file(s) match the regenerated form
 ok   the fingerprint is stable across two runs
 ok   the fingerprint does not depend on where the code lives
-     fingerprint: 587e6f2d45eacf43bcdfc10e855700a4683f349c405b873666cf2b0f0a175ede
+     fingerprint: fe3d23ea8c316fb0907ac549cf449ece0b7c8d4d3ef29c85c3980274c3b49cdb
 ok   an independent recount agrees with every headline number
 ok   the privacy scan finds its positive controls and nothing else
 ok   no tracked file is larger than a megabyte
@@ -269,14 +287,16 @@ VERIFY PASSED: exactly
 
 ## Unfinished
 
-- **Two small local models, no frontier models.** The board holds gemma4:e4b and llama3.2:3b,
-  both through ollama on one workstation. Nothing here has been run against a hosted model, so the
-  leaderboard says what small open models do and cannot say what the constraint costs at the top
-  of the range. A third, qwen3.5:9b, was recorded and left off: 45 of its 500 answers ran past the
-  1200 token budget, and repairing those rows at a larger budget takes hours of exclusive GPU time
-  that was not available. The machinery for the repair is in `scripts/record.py` and the fixture
-  is not committed, because a fixture that does not cover the whole dataset is refused rather than
-  scored on the families the run happened to reach.
+- **Three small local models, no frontier models.** The board holds gemma4:e4b, llama3.2:3b and
+  qwen3.5:9b, all through ollama on one workstation. Nothing here has been run against a hosted
+  model, so the leaderboard says what small open models do and cannot say what the constraint
+  costs at the top of the range.
+- **45 of qwen3.5:9b's 500 answers stopped at the generation budget, and 4 of those are in
+  doubt.** They were recorded again at a 4000 token budget and ran past that too, with zero hidden
+  reasoning, so the truncation is the model failing to stop rather than the harness running out of
+  room. 41 of the 45 were already past their target when they stopped, which no amount of further
+  text would have fixed. The remaining 4 were still short, and finishing them could have changed
+  the verdict. The count is on the page next to the score.
 - **gpt-oss:20b is measured but not scored.** It is the one reasoning model on this machine and
   the budget needed to get a usable recording out of it is several times any answer's length,
   which measures the harness rather than the model. The evidence file explains it.

@@ -186,6 +186,34 @@ def _dialect_tables(systems: list) -> str:
     return "".join(blocks)
 
 
+def _fixture_caveats(systems: list) -> str:
+    """Say, on the page, where a recorded answer ran out of generation budget.
+
+    A leaderboard row that quietly averages in cut-off answers is publishing a property of the
+    harness. Publishing the count next to the score lets a reader discount it, and separating the
+    answers already past their target from the ones still in doubt says how much to discount.
+    """
+    rows = []
+    for board in systems:
+        notes = board.get("fixture") or {}
+        if not notes.get("truncated"):
+            continue
+        share = notes.get("truncated_share", 0) * 100
+        rows.append(
+            f"<li><b>{html.escape(board['system'])}</b>: {notes['truncated']} of "
+            f"{notes['rows']} answers ({share:.1f}%) stopped at the generation budget of "
+            f"{max(notes.get('num_predict') or [0])} tokens, with "
+            f"{notes.get('max_thinking_chars', 0)} characters of hidden reasoning at most. "
+            f"{notes.get('truncated_undetermined', 0)} of those were still short of the target "
+            f"when they stopped and are the only ones whose verdict finishing could have "
+            f"changed; the rest were already past it.</li>")
+    if not rows:
+        return ("<p>No recorded answer stopped at the generation budget, so no row on this board "
+                "is averaging in a sentence that was cut in half.</p>")
+    return ("<p>Where a recording ran out of room, and how much of it is in doubt:</p><ul>"
+            + "".join(rows) + "</ul>")
+
+
 def _cards(report_data: dict) -> str:
     head = report_data["headline"]
     dataset = report_data["dataset"]
@@ -229,6 +257,8 @@ same board as the models on purpose. <code>filler_keyword</code> emits the reque
 word <code>item</code> with the keyword dropped in, and whatever it scores is the ceiling on what
 compliance means here.</p>
 {_leaderboard_table(systems)}
+<h3>Truncation</h3>
+{_fixture_caveats(systems)}
 <h2>By constraint family</h2>
 <p>An upper bound is a different problem from an exact target. A system that simply writes less
 than asked scores well on <code>sentences_at_most</code> and zero on <code>sentences_exact</code>,

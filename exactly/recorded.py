@@ -125,6 +125,10 @@ def responses(name: str, items: list, directory=None) -> tuple:
         # A repaired fixture holds rows recorded at more than one budget. Publishing the range
         # rather than one number keeps that visible instead of implying a single clean run.
         "num_predict": budgets,
+        # The ids, so the report can ask a further question the loader has no business asking:
+        # whether a cut-off answer's verdict could still have changed had it been allowed to
+        # finish. An answer already 2600 words past a 36 word target is not in doubt.
+        "truncated_ids": truncated,
         "first_missing": missing[0] if missing else None,
     }
     return answered, notes
