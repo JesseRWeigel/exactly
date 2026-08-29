@@ -81,6 +81,10 @@ PROBES = (
     ("code fence", "```\nyeast makes the bread rise\n```"),
     ("preamble line", "Here is the answer:\nyeast makes the bread rise"),
     ("self reported count", "yeast makes the bread rise\n(5 words)"),
+    # A shape three real model answers took, and the one that caught a bug in the second
+    # implementation: markdown bold and em dashes wrapped around the required keyword.
+    ("bold keyword between dashes",
+     "the tensioned strands of **yeast**\u2014is carefully attached to the stick"),
     ("repeated item", "- Red apples.\n- red apples\n- red cars"),
     ("leading whitespace", "   padded on both ends   "),
     ("empty", ""),

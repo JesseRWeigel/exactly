@@ -305,9 +305,22 @@ COUNTERS = {"words": count_words, "sentences": count_sentences, "bullets": count
 
 
 def keyword_present(text: str, keyword: str) -> bool:
-    """Whole word, case insensitive, hyphen treated as a separator."""
+    """Whole word, case insensitive, with the hyphen AND the separating dashes splitting tokens.
+
+    The first version of this split on whitespace and the ASCII hyphen only, and the cross-check
+    against the package caught it on three real model answers out of five hundred. Two of the
+    three read `...element---the tensioned strands of **horsehair**---is...`, with em dashes and
+    markdown bold around the required word. Splitting on whitespace alone leaves `**horsehair**`
+    glued to the dash and to the word after it, so the token cleans down to `horsehairis` and the
+    keyword goes missing. The published rule says an em dash separates the tokens on either side
+    of it, so it has to separate here too. The three answers were compliant and the independent
+    recount was calling them failures.
+    """
     wanted = keyword.casefold()
-    for token in re.split(r"[\s\-]+", unicodedata.normalize("NFC", text)):
+    prepared = unicodedata.normalize("NFC", text)
+    for character in SPLITTING:
+        prepared = prepared.replace(character, " ")
+    for token in re.split(r"[\s\-]+", prepared):
         cleaned = "".join(character for character in token if character.isalnum()).casefold()
         if cleaned == wanted:
             return True
