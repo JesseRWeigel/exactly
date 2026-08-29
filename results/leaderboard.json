@@ -1,0 +1,6126 @@
+{
+  "dataset": {
+    "count": 500,
+    "families": {
+      "bullets_exact": 70,
+      "chars_exact": 50,
+      "lines_exact": 45,
+      "paragraphs_exact": 45,
+      "sentences_at_most": 40,
+      "sentences_exact": 70,
+      "unique_items": 60,
+      "words_at_least": 40,
+      "words_exact": 80
+    },
+    "prompts_sha256": "d5568259e08480d3ad9ee5ffecd972df6b5acc1472be2e267198aa42c57633ab",
+    "published_rules": {
+      "bullets": "plain",
+      "chars": "codepoints",
+      "items": "normalized",
+      "lines": "nonblank",
+      "paragraphs": "blank_line",
+      "sentences": "plain",
+      "words": "plain"
+    },
+    "seed": 20260829
+  },
+  "headline": {
+    "best_model": "gemma4_e4b",
+    "best_model_rate": 0.65,
+    "filler_keyword_rate": 1.0,
+    "ignore_rate": 0.0,
+    "largest_sensitivity": {
+      "dimension": "chars",
+      "from": "no_whitespace",
+      "spread_points": 100.0,
+      "system": "reference",
+      "to": "nfc_codepoints"
+    },
+    "median_sensitivity_across_dimensions": {
+      "approximate": 11.11,
+      "blank": 0.0,
+      "filler": 0.0,
+      "filler_keyword": 0.0,
+      "gemma4_e4b": 0.0,
+      "ignore": 0.0,
+      "llama3.2_3b": 0.83,
+      "off_by_one": 0.0,
+      "reference": 93.33
+    },
+    "models": 2,
+    "reference_rate": 1.0,
+    "systems": 9
+  },
+  "systems": [
+    {
+      "fixture": {},
+      "kind": "baseline",
+      "lenient_rate": 1.0,
+      "packaging_gap_points": 0.0,
+      "responses_unwrapped": 0,
+      "sensitivity": {
+        "bullets": {
+          "by_dialect": {
+            "all_levels": 0.4615,
+            "dash_only": 0.8231,
+            "plain": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "plain",
+          "lowest": "all_levels",
+          "n": 130,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 53.85
+        },
+        "chars": {
+          "by_dialect": {
+            "codepoints": 1.0,
+            "nfc_codepoints": 1.0,
+            "no_whitespace": 0.0,
+            "utf8_bytes": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "nfc_codepoints",
+          "lowest": "no_whitespace",
+          "n": 50,
+          "published": "codepoints",
+          "published_rate": 1.0,
+          "spread_points": 100.0
+        },
+        "items": {
+          "by_dialect": {
+            "exact": 1.0,
+            "first_word": 0.0667,
+            "normalized": 1.0
+          },
+          "flag": "unique_ok",
+          "highest": "exact",
+          "lowest": "first_word",
+          "n": 60,
+          "published": "normalized",
+          "published_rate": 1.0,
+          "spread_points": 93.33
+        },
+        "lines": {
+          "by_dialect": {
+            "all_lines": 0.0,
+            "nonblank": 1.0,
+            "stripped_all": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "stripped_all",
+          "lowest": "all_lines",
+          "n": 45,
+          "published": "nonblank",
+          "published_rate": 1.0,
+          "spread_points": 100.0
+        },
+        "paragraphs": {
+          "by_dialect": {
+            "blank_line": 1.0,
+            "indent_or_blank": 1.0,
+            "single_newline": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "indent_or_blank",
+          "lowest": "single_newline",
+          "n": 45,
+          "published": "blank_line",
+          "published_rate": 1.0,
+          "spread_points": 100.0
+        },
+        "sentences": {
+          "by_dialect": {
+            "naive": 0.0909,
+            "newline_breaks": 1.0,
+            "plain": 1.0,
+            "require_terminator": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "require_terminator",
+          "lowest": "naive",
+          "n": 110,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 90.91
+        },
+        "words": {
+          "by_dialect": {
+            "alpha_only": 1.0,
+            "hyphen_split": 1.0,
+            "plain": 1.0,
+            "whitespace": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "alpha_only",
+          "lowest": "plain",
+          "n": 120,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "worst": {
+          "dimension": "chars",
+          "from": "no_whitespace",
+          "median_spread_points": 93.33,
+          "spread_points": 100.0,
+          "to": "nfc_codepoints"
+        }
+      },
+      "strict": {
+        "families": {
+          "bullets_exact": {
+            "compliant": 70,
+            "count_ok": 70,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 70,
+            "n": 70,
+            "rate": 1.0,
+            "unique_ok": 70
+          },
+          "chars_exact": {
+            "compliant": 50,
+            "count_ok": 50,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 50,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 50,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 50,
+            "n": 50,
+            "rate": 1.0,
+            "unique_ok": 50
+          },
+          "lines_exact": {
+            "compliant": 45,
+            "count_ok": 45,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 45,
+            "n": 45,
+            "rate": 1.0,
+            "unique_ok": 45
+          },
+          "paragraphs_exact": {
+            "compliant": 45,
+            "count_ok": 45,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 45,
+            "n": 45,
+            "rate": 1.0,
+            "unique_ok": 45
+          },
+          "sentences_at_most": {
+            "compliant": 40,
+            "count_ok": 40,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 40,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 40,
+            "n": 40,
+            "rate": 1.0,
+            "unique_ok": 40
+          },
+          "sentences_exact": {
+            "compliant": 70,
+            "count_ok": 70,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 70,
+            "n": 70,
+            "rate": 1.0,
+            "unique_ok": 70
+          },
+          "unique_items": {
+            "compliant": 60,
+            "count_ok": 60,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 60,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 60,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 60,
+            "n": 60,
+            "rate": 1.0,
+            "unique_ok": 60
+          },
+          "words_at_least": {
+            "compliant": 40,
+            "count_ok": 40,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 40,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 40,
+            "n": 40,
+            "rate": 1.0,
+            "unique_ok": 40
+          },
+          "words_exact": {
+            "compliant": 80,
+            "count_ok": 80,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 80,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 80,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 80,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 80,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 80,
+            "n": 80,
+            "rate": 1.0,
+            "unique_ok": 80
+          }
+        },
+        "overall": {
+          "compliant": 500,
+          "count_ok": 500,
+          "empty": 0,
+          "errors": {
+            "count_violations": 0,
+            "histogram": {
+              "+1": 0,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 0,
+              "-4..-2": 0,
+              "-9..-5": 0,
+              "0": 500,
+              "<=-10": 0,
+              ">=+10": 0
+            },
+            "mean_abs_error": 0.0,
+            "mean_error": 0.0,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 500,
+            "off_by_one": 0,
+            "off_by_one_share_of_misses": null,
+            "over": 0,
+            "under": 0
+          },
+          "errors_exact": {
+            "count_violations": 0,
+            "histogram": {
+              "+1": 0,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 0,
+              "-4..-2": 0,
+              "-9..-5": 0,
+              "0": 420,
+              "<=-10": 0,
+              ">=+10": 0
+            },
+            "mean_abs_error": 0.0,
+            "mean_error": 0.0,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 420,
+            "off_by_one": 0,
+            "off_by_one_share_of_misses": null,
+            "over": 0,
+            "under": 0
+          },
+          "keyword_ok": 500,
+          "n": 500,
+          "rate": 1.0,
+          "unique_ok": 500
+        }
+      },
+      "system": "reference"
+    },
+    {
+      "fixture": {},
+      "kind": "baseline",
+      "lenient_rate": 0.0,
+      "packaging_gap_points": 0.0,
+      "responses_unwrapped": 0,
+      "sensitivity": {
+        "bullets": {
+          "by_dialect": {
+            "all_levels": 0.0,
+            "dash_only": 0.0,
+            "plain": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "dash_only",
+          "lowest": "plain",
+          "n": 130,
+          "published": "plain",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "chars": {
+          "by_dialect": {
+            "codepoints": 0.0,
+            "nfc_codepoints": 0.0,
+            "no_whitespace": 0.0,
+            "utf8_bytes": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "nfc_codepoints",
+          "lowest": "codepoints",
+          "n": 50,
+          "published": "codepoints",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "items": {
+          "by_dialect": {
+            "exact": 1.0,
+            "first_word": 1.0,
+            "normalized": 1.0
+          },
+          "flag": "unique_ok",
+          "highest": "first_word",
+          "lowest": "normalized",
+          "n": 60,
+          "published": "normalized",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "lines": {
+          "by_dialect": {
+            "all_lines": 0.0,
+            "nonblank": 0.0,
+            "stripped_all": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "stripped_all",
+          "lowest": "nonblank",
+          "n": 45,
+          "published": "nonblank",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "paragraphs": {
+          "by_dialect": {
+            "blank_line": 0.0,
+            "indent_or_blank": 0.0,
+            "single_newline": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "indent_or_blank",
+          "lowest": "blank_line",
+          "n": 45,
+          "published": "blank_line",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "sentences": {
+          "by_dialect": {
+            "naive": 0.3636,
+            "newline_breaks": 0.3636,
+            "plain": 0.3636,
+            "require_terminator": 0.3636
+          },
+          "flag": "count_ok",
+          "highest": "require_terminator",
+          "lowest": "plain",
+          "n": 110,
+          "published": "plain",
+          "published_rate": 0.3636,
+          "spread_points": 0.0
+        },
+        "words": {
+          "by_dialect": {
+            "alpha_only": 0.0,
+            "hyphen_split": 0.0,
+            "plain": 0.0,
+            "whitespace": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "alpha_only",
+          "lowest": "plain",
+          "n": 120,
+          "published": "plain",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "worst": {
+          "dimension": null,
+          "from": null,
+          "median_spread_points": 0.0,
+          "spread_points": 0.0,
+          "to": null
+        }
+      },
+      "strict": {
+        "families": {
+          "bullets_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 70,
+            "errors": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 20,
+                "-9..-5": 37,
+                "0": 0,
+                "<=-10": 13,
+                ">=+10": 0
+              },
+              "mean_abs_error": 6.657,
+              "mean_error": -6.657,
+              "median_abs_relative_error": 1.0,
+              "median_error": -6.5,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 70
+            },
+            "errors_exact": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 20,
+                "-9..-5": 37,
+                "0": 0,
+                "<=-10": 13,
+                ">=+10": 0
+              },
+              "mean_abs_error": 6.657,
+              "mean_error": -6.657,
+              "median_abs_relative_error": 1.0,
+              "median_error": -6.5,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 70
+            },
+            "keyword_ok": 0,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "chars_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 50,
+            "errors": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 50,
+                ">=+10": 0
+              },
+              "mean_abs_error": 166.44,
+              "mean_error": -166.44,
+              "median_abs_relative_error": 1.0,
+              "median_error": -156.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 50
+            },
+            "errors_exact": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 50,
+                ">=+10": 0
+              },
+              "mean_abs_error": 166.44,
+              "mean_error": -166.44,
+              "median_abs_relative_error": 1.0,
+              "median_error": -156.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 50
+            },
+            "keyword_ok": 0,
+            "n": 50,
+            "rate": 0.0,
+            "unique_ok": 50
+          },
+          "lines_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 45,
+            "errors": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 12,
+                "-9..-5": 24,
+                "0": 0,
+                "<=-10": 9,
+                ">=+10": 0
+              },
+              "mean_abs_error": 6.822,
+              "mean_error": -6.822,
+              "median_abs_relative_error": 1.0,
+              "median_error": -7,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 45
+            },
+            "errors_exact": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 12,
+                "-9..-5": 24,
+                "0": 0,
+                "<=-10": 9,
+                ">=+10": 0
+              },
+              "mean_abs_error": 6.822,
+              "mean_error": -6.822,
+              "median_abs_relative_error": 1.0,
+              "median_error": -7,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 45
+            },
+            "keyword_ok": 0,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "paragraphs_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 45,
+            "errors": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 27,
+                "-9..-5": 18,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 3.956,
+              "mean_error": -3.956,
+              "median_abs_relative_error": 1.0,
+              "median_error": -4,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 45
+            },
+            "errors_exact": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 27,
+                "-9..-5": 18,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 3.956,
+              "mean_error": -3.956,
+              "median_abs_relative_error": 1.0,
+              "median_error": -4,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 45
+            },
+            "keyword_ok": 0,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "sentences_at_most": {
+            "compliant": 0,
+            "count_ok": 40,
+            "empty": 40,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 29,
+                "-9..-5": 11,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 3.725,
+              "mean_error": -3.725,
+              "median_abs_relative_error": 1.0,
+              "median_error": -4.0,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 40,
+            "rate": 0.0,
+            "unique_ok": 40
+          },
+          "sentences_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 70,
+            "errors": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 35,
+                "-9..-5": 35,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 4.729,
+              "mean_error": -4.729,
+              "median_abs_relative_error": 1.0,
+              "median_error": -4.5,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 70
+            },
+            "errors_exact": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 35,
+                "-9..-5": 35,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 4.729,
+              "mean_error": -4.729,
+              "median_abs_relative_error": 1.0,
+              "median_error": -4.5,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 70
+            },
+            "keyword_ok": 0,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "unique_items": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 60,
+            "errors": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 32,
+                "0": 0,
+                "<=-10": 28,
+                ">=+10": 0
+              },
+              "mean_abs_error": 9.467,
+              "mean_error": -9.467,
+              "median_abs_relative_error": 1.0,
+              "median_error": -9.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 60
+            },
+            "errors_exact": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 32,
+                "0": 0,
+                "<=-10": 28,
+                ">=+10": 0
+              },
+              "mean_abs_error": 9.467,
+              "mean_error": -9.467,
+              "median_abs_relative_error": 1.0,
+              "median_error": -9.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 60
+            },
+            "keyword_ok": 0,
+            "n": 60,
+            "rate": 0.0,
+            "unique_ok": 60
+          },
+          "words_at_least": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 40,
+            "errors": {
+              "count_violations": 40,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 40,
+                ">=+10": 0
+              },
+              "mean_abs_error": 62.55,
+              "mean_error": -62.55,
+              "median_abs_relative_error": 1.0,
+              "median_error": -65.5,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 40
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 40,
+            "rate": 0.0,
+            "unique_ok": 40
+          },
+          "words_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 80,
+            "errors": {
+              "count_violations": 80,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 80,
+                ">=+10": 0
+              },
+              "mean_abs_error": 65.875,
+              "mean_error": -65.875,
+              "median_abs_relative_error": 1.0,
+              "median_error": -67.5,
+              "n": 80,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 80
+            },
+            "errors_exact": {
+              "count_violations": 80,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 80,
+                ">=+10": 0
+              },
+              "mean_abs_error": 65.875,
+              "mean_error": -65.875,
+              "median_abs_relative_error": 1.0,
+              "median_error": -67.5,
+              "n": 80,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 80
+            },
+            "keyword_ok": 0,
+            "n": 80,
+            "rate": 0.0,
+            "unique_ok": 80
+          }
+        },
+        "overall": {
+          "compliant": 0,
+          "count_ok": 40,
+          "empty": 500,
+          "errors": {
+            "count_violations": 460,
+            "histogram": {
+              "+1": 0,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 0,
+              "-4..-2": 123,
+              "-9..-5": 157,
+              "0": 0,
+              "<=-10": 220,
+              ">=+10": 0
+            },
+            "mean_abs_error": 36.186,
+            "mean_error": -36.186,
+            "median_abs_relative_error": 1.0,
+            "median_error": -8.0,
+            "n": 500,
+            "off_by_one": 0,
+            "off_by_one_share_of_misses": 0.0,
+            "over": 0,
+            "under": 460
+          },
+          "errors_exact": {
+            "count_violations": 420,
+            "histogram": {
+              "+1": 0,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 0,
+              "-4..-2": 94,
+              "-9..-5": 146,
+              "0": 0,
+              "<=-10": 180,
+              ">=+10": 0
+            },
+            "mean_abs_error": 36.767,
+            "mean_error": -36.767,
+            "median_abs_relative_error": 1.0,
+            "median_error": -8.0,
+            "n": 420,
+            "off_by_one": 0,
+            "off_by_one_share_of_misses": 0.0,
+            "over": 0,
+            "under": 420
+          },
+          "keyword_ok": 0,
+          "n": 500,
+          "rate": 0.0,
+          "unique_ok": 500
+        }
+      },
+      "system": "blank"
+    },
+    {
+      "fixture": {},
+      "kind": "baseline",
+      "lenient_rate": 0.0,
+      "packaging_gap_points": 0.0,
+      "responses_unwrapped": 0,
+      "sensitivity": {
+        "bullets": {
+          "by_dialect": {
+            "all_levels": 0.0,
+            "dash_only": 0.0,
+            "plain": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "dash_only",
+          "lowest": "plain",
+          "n": 130,
+          "published": "plain",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "chars": {
+          "by_dialect": {
+            "codepoints": 0.02,
+            "nfc_codepoints": 0.02,
+            "no_whitespace": 0.0,
+            "utf8_bytes": 0.02
+          },
+          "flag": "count_ok",
+          "highest": "nfc_codepoints",
+          "lowest": "no_whitespace",
+          "n": 50,
+          "published": "codepoints",
+          "published_rate": 0.02,
+          "spread_points": 2.0
+        },
+        "items": {
+          "by_dialect": {
+            "exact": 1.0,
+            "first_word": 1.0,
+            "normalized": 1.0
+          },
+          "flag": "unique_ok",
+          "highest": "first_word",
+          "lowest": "normalized",
+          "n": 60,
+          "published": "normalized",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "lines": {
+          "by_dialect": {
+            "all_lines": 0.0,
+            "nonblank": 0.0,
+            "stripped_all": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "stripped_all",
+          "lowest": "nonblank",
+          "n": 45,
+          "published": "nonblank",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "paragraphs": {
+          "by_dialect": {
+            "blank_line": 0.0,
+            "indent_or_blank": 0.0,
+            "single_newline": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "indent_or_blank",
+          "lowest": "blank_line",
+          "n": 45,
+          "published": "blank_line",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "sentences": {
+          "by_dialect": {
+            "naive": 0.3727,
+            "newline_breaks": 0.3727,
+            "plain": 0.3727,
+            "require_terminator": 0.3727
+          },
+          "flag": "count_ok",
+          "highest": "require_terminator",
+          "lowest": "plain",
+          "n": 110,
+          "published": "plain",
+          "published_rate": 0.3727,
+          "spread_points": 0.0
+        },
+        "words": {
+          "by_dialect": {
+            "alpha_only": 0.0917,
+            "hyphen_split": 0.0917,
+            "plain": 0.0917,
+            "whitespace": 0.0917
+          },
+          "flag": "count_ok",
+          "highest": "alpha_only",
+          "lowest": "plain",
+          "n": 120,
+          "published": "plain",
+          "published_rate": 0.0917,
+          "spread_points": 0.0
+        },
+        "worst": {
+          "dimension": "chars",
+          "from": "no_whitespace",
+          "median_spread_points": 0.0,
+          "spread_points": 2.0,
+          "to": "nfc_codepoints"
+        }
+      },
+      "strict": {
+        "families": {
+          "bullets_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 20,
+                "-9..-5": 37,
+                "0": 0,
+                "<=-10": 13,
+                ">=+10": 0
+              },
+              "mean_abs_error": 6.657,
+              "mean_error": -6.657,
+              "median_abs_relative_error": 1.0,
+              "median_error": -6.5,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 70
+            },
+            "errors_exact": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 20,
+                "-9..-5": 37,
+                "0": 0,
+                "<=-10": 13,
+                ">=+10": 0
+              },
+              "mean_abs_error": 6.657,
+              "mean_error": -6.657,
+              "median_abs_relative_error": 1.0,
+              "median_error": -6.5,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 70
+            },
+            "keyword_ok": 0,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "chars_exact": {
+            "compliant": 0,
+            "count_ok": 1,
+            "empty": 0,
+            "errors": {
+              "count_violations": 49,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 1,
+                "+5..+9": 1,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 1,
+                "<=-10": 4,
+                ">=+10": 43
+              },
+              "mean_abs_error": 95.68,
+              "mean_error": 91.56,
+              "median_abs_relative_error": 0.6545,
+              "median_error": 102.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 45,
+              "under": 4
+            },
+            "errors_exact": {
+              "count_violations": 49,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 1,
+                "+5..+9": 1,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 1,
+                "<=-10": 4,
+                ">=+10": 43
+              },
+              "mean_abs_error": 95.68,
+              "mean_error": 91.56,
+              "median_abs_relative_error": 0.6545,
+              "median_error": 102.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 45,
+              "under": 4
+            },
+            "keyword_ok": 0,
+            "n": 50,
+            "rate": 0.0,
+            "unique_ok": 50
+          },
+          "lines_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 17,
+                "-9..-5": 28,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 5.822,
+              "mean_error": -5.822,
+              "median_abs_relative_error": 0.8571,
+              "median_error": -6,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 45
+            },
+            "errors_exact": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 17,
+                "-9..-5": 28,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 5.822,
+              "mean_error": -5.822,
+              "median_abs_relative_error": 0.8571,
+              "median_error": -6,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 45
+            },
+            "keyword_ok": 0,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "paragraphs_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 9,
+                "-4..-2": 29,
+                "-9..-5": 7,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 2.956,
+              "mean_error": -2.956,
+              "median_abs_relative_error": 0.75,
+              "median_error": -3,
+              "n": 45,
+              "off_by_one": 9,
+              "off_by_one_share_of_misses": 0.2,
+              "over": 0,
+              "under": 45
+            },
+            "errors_exact": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 9,
+                "-4..-2": 29,
+                "-9..-5": 7,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 2.956,
+              "mean_error": -2.956,
+              "median_abs_relative_error": 0.75,
+              "median_error": -3,
+              "n": 45,
+              "off_by_one": 9,
+              "off_by_one_share_of_misses": 0.2,
+              "over": 0,
+              "under": 45
+            },
+            "keyword_ok": 0,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "sentences_at_most": {
+            "compliant": 0,
+            "count_ok": 31,
+            "empty": 0,
+            "errors": {
+              "count_violations": 9,
+              "histogram": {
+                "+1": 9,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 11,
+                "-4..-2": 11,
+                "-9..-5": 0,
+                "0": 9,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.175,
+              "mean_error": -0.725,
+              "median_abs_relative_error": 0.325,
+              "median_error": -1.0,
+              "n": 40,
+              "off_by_one": 9,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 9,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 40,
+            "rate": 0.0,
+            "unique_ok": 40
+          },
+          "sentences_exact": {
+            "compliant": 0,
+            "count_ok": 10,
+            "empty": 0,
+            "errors": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 11,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 14,
+                "-4..-2": 25,
+                "-9..-5": 10,
+                "0": 10,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 2.043,
+              "mean_error": -1.729,
+              "median_abs_relative_error": 0.4,
+              "median_error": -1.5,
+              "n": 70,
+              "off_by_one": 25,
+              "off_by_one_share_of_misses": 0.4167,
+              "over": 11,
+              "under": 49
+            },
+            "errors_exact": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 11,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 14,
+                "-4..-2": 25,
+                "-9..-5": 10,
+                "0": 10,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 2.043,
+              "mean_error": -1.729,
+              "median_abs_relative_error": 0.4,
+              "median_error": -1.5,
+              "n": 70,
+              "off_by_one": 25,
+              "off_by_one_share_of_misses": 0.4167,
+              "over": 11,
+              "under": 49
+            },
+            "keyword_ok": 0,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "unique_items": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 32,
+                "0": 0,
+                "<=-10": 28,
+                ">=+10": 0
+              },
+              "mean_abs_error": 9.467,
+              "mean_error": -9.467,
+              "median_abs_relative_error": 1.0,
+              "median_error": -9.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 60
+            },
+            "errors_exact": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 32,
+                "0": 0,
+                "<=-10": 28,
+                ">=+10": 0
+              },
+              "mean_abs_error": 9.467,
+              "mean_error": -9.467,
+              "median_abs_relative_error": 1.0,
+              "median_error": -9.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": 0.0,
+              "over": 0,
+              "under": 60
+            },
+            "keyword_ok": 0,
+            "n": 60,
+            "rate": 0.0,
+            "unique_ok": 60
+          },
+          "words_at_least": {
+            "compliant": 0,
+            "count_ok": 11,
+            "empty": 0,
+            "errors": {
+              "count_violations": 29,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 1,
+                "+5..+9": 0,
+                "-1": 1,
+                "-4..-2": 3,
+                "-9..-5": 2,
+                "0": 0,
+                "<=-10": 23,
+                ">=+10": 10
+              },
+              "mean_abs_error": 22.05,
+              "mean_error": -9.55,
+              "median_abs_relative_error": 0.3456,
+              "median_error": -12.5,
+              "n": 40,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.0345,
+              "over": 0,
+              "under": 29
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 40,
+            "rate": 0.0,
+            "unique_ok": 40
+          },
+          "words_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 80,
+              "histogram": {
+                "+1": 1,
+                "+2..+4": 2,
+                "+5..+9": 5,
+                "-1": 0,
+                "-4..-2": 3,
+                "-9..-5": 2,
+                "0": 0,
+                "<=-10": 44,
+                ">=+10": 23
+              },
+              "mean_abs_error": 28.825,
+              "mean_error": -12.875,
+              "median_abs_relative_error": 0.4239,
+              "median_error": -14.5,
+              "n": 80,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.0125,
+              "over": 31,
+              "under": 49
+            },
+            "errors_exact": {
+              "count_violations": 80,
+              "histogram": {
+                "+1": 1,
+                "+2..+4": 2,
+                "+5..+9": 5,
+                "-1": 0,
+                "-4..-2": 3,
+                "-9..-5": 2,
+                "0": 0,
+                "<=-10": 44,
+                ">=+10": 23
+              },
+              "mean_abs_error": 28.825,
+              "mean_error": -12.875,
+              "median_abs_relative_error": 0.4239,
+              "median_error": -14.5,
+              "n": 80,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.0125,
+              "over": 31,
+              "under": 49
+            },
+            "keyword_ok": 0,
+            "n": 80,
+            "rate": 0.0,
+            "unique_ok": 80
+          }
+        },
+        "overall": {
+          "compliant": 0,
+          "count_ok": 53,
+          "empty": 0,
+          "errors": {
+            "count_violations": 447,
+            "histogram": {
+              "+1": 21,
+              "+2..+4": 4,
+              "+5..+9": 6,
+              "-1": 35,
+              "-4..-2": 108,
+              "-9..-5": 118,
+              "0": 20,
+              "<=-10": 112,
+              ">=+10": 76
+            },
+            "mean_abs_error": 19.182,
+            "mean_error": 3.174,
+            "median_abs_relative_error": 0.6667,
+            "median_error": -4.0,
+            "n": 500,
+            "off_by_one": 45,
+            "off_by_one_share_of_misses": 0.1007,
+            "over": 96,
+            "under": 351
+          },
+          "errors_exact": {
+            "count_violations": 409,
+            "histogram": {
+              "+1": 12,
+              "+2..+4": 3,
+              "+5..+9": 6,
+              "-1": 23,
+              "-4..-2": 94,
+              "-9..-5": 116,
+              "0": 11,
+              "<=-10": 89,
+              ">=+10": 66
+            },
+            "mean_abs_error": 20.624,
+            "mean_error": 4.757,
+            "median_abs_relative_error": 0.8,
+            "median_error": -4.0,
+            "n": 420,
+            "off_by_one": 35,
+            "off_by_one_share_of_misses": 0.0856,
+            "over": 87,
+            "under": 322
+          },
+          "keyword_ok": 0,
+          "n": 500,
+          "rate": 0.0,
+          "unique_ok": 500
+        }
+      },
+      "system": "ignore"
+    },
+    {
+      "fixture": {},
+      "kind": "baseline",
+      "lenient_rate": 0.0,
+      "packaging_gap_points": 0.0,
+      "responses_unwrapped": 0,
+      "sensitivity": {
+        "bullets": {
+          "by_dialect": {
+            "all_levels": 1.0,
+            "dash_only": 1.0,
+            "plain": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "dash_only",
+          "lowest": "plain",
+          "n": 130,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "chars": {
+          "by_dialect": {
+            "codepoints": 1.0,
+            "nfc_codepoints": 1.0,
+            "no_whitespace": 1.0,
+            "utf8_bytes": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "nfc_codepoints",
+          "lowest": "codepoints",
+          "n": 50,
+          "published": "codepoints",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "items": {
+          "by_dialect": {
+            "exact": 1.0,
+            "first_word": 0.0,
+            "normalized": 1.0
+          },
+          "flag": "unique_ok",
+          "highest": "exact",
+          "lowest": "first_word",
+          "n": 60,
+          "published": "normalized",
+          "published_rate": 1.0,
+          "spread_points": 100.0
+        },
+        "lines": {
+          "by_dialect": {
+            "all_lines": 1.0,
+            "nonblank": 1.0,
+            "stripped_all": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "stripped_all",
+          "lowest": "nonblank",
+          "n": 45,
+          "published": "nonblank",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "paragraphs": {
+          "by_dialect": {
+            "blank_line": 1.0,
+            "indent_or_blank": 1.0,
+            "single_newline": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "indent_or_blank",
+          "lowest": "blank_line",
+          "n": 45,
+          "published": "blank_line",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "sentences": {
+          "by_dialect": {
+            "naive": 1.0,
+            "newline_breaks": 1.0,
+            "plain": 1.0,
+            "require_terminator": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "require_terminator",
+          "lowest": "plain",
+          "n": 110,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "words": {
+          "by_dialect": {
+            "alpha_only": 1.0,
+            "hyphen_split": 1.0,
+            "plain": 1.0,
+            "whitespace": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "alpha_only",
+          "lowest": "plain",
+          "n": 120,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "worst": {
+          "dimension": "items",
+          "from": "first_word",
+          "median_spread_points": 0.0,
+          "spread_points": 100.0,
+          "to": "exact"
+        }
+      },
+      "strict": {
+        "families": {
+          "bullets_exact": {
+            "compliant": 0,
+            "count_ok": 70,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "chars_exact": {
+            "compliant": 0,
+            "count_ok": 50,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 50,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 50,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 50,
+            "rate": 0.0,
+            "unique_ok": 50
+          },
+          "lines_exact": {
+            "compliant": 0,
+            "count_ok": 45,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "paragraphs_exact": {
+            "compliant": 0,
+            "count_ok": 45,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "sentences_at_most": {
+            "compliant": 0,
+            "count_ok": 40,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 40,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 40,
+            "rate": 0.0,
+            "unique_ok": 40
+          },
+          "sentences_exact": {
+            "compliant": 0,
+            "count_ok": 70,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "unique_items": {
+            "compliant": 0,
+            "count_ok": 60,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 60,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 60,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 60,
+            "rate": 0.0,
+            "unique_ok": 60
+          },
+          "words_at_least": {
+            "compliant": 0,
+            "count_ok": 40,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 40,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 40,
+            "rate": 0.0,
+            "unique_ok": 40
+          },
+          "words_exact": {
+            "compliant": 0,
+            "count_ok": 80,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 80,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 80,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 80,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 80,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 0,
+            "n": 80,
+            "rate": 0.0,
+            "unique_ok": 80
+          }
+        },
+        "overall": {
+          "compliant": 0,
+          "count_ok": 500,
+          "empty": 0,
+          "errors": {
+            "count_violations": 0,
+            "histogram": {
+              "+1": 0,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 0,
+              "-4..-2": 0,
+              "-9..-5": 0,
+              "0": 500,
+              "<=-10": 0,
+              ">=+10": 0
+            },
+            "mean_abs_error": 0.0,
+            "mean_error": 0.0,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 500,
+            "off_by_one": 0,
+            "off_by_one_share_of_misses": null,
+            "over": 0,
+            "under": 0
+          },
+          "errors_exact": {
+            "count_violations": 0,
+            "histogram": {
+              "+1": 0,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 0,
+              "-4..-2": 0,
+              "-9..-5": 0,
+              "0": 420,
+              "<=-10": 0,
+              ">=+10": 0
+            },
+            "mean_abs_error": 0.0,
+            "mean_error": 0.0,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 420,
+            "off_by_one": 0,
+            "off_by_one_share_of_misses": null,
+            "over": 0,
+            "under": 0
+          },
+          "keyword_ok": 0,
+          "n": 500,
+          "rate": 0.0,
+          "unique_ok": 500
+        }
+      },
+      "system": "filler"
+    },
+    {
+      "fixture": {},
+      "kind": "baseline",
+      "lenient_rate": 1.0,
+      "packaging_gap_points": 0.0,
+      "responses_unwrapped": 0,
+      "sensitivity": {
+        "bullets": {
+          "by_dialect": {
+            "all_levels": 1.0,
+            "dash_only": 1.0,
+            "plain": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "dash_only",
+          "lowest": "plain",
+          "n": 130,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "chars": {
+          "by_dialect": {
+            "codepoints": 1.0,
+            "nfc_codepoints": 1.0,
+            "no_whitespace": 0.0,
+            "utf8_bytes": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "nfc_codepoints",
+          "lowest": "no_whitespace",
+          "n": 50,
+          "published": "codepoints",
+          "published_rate": 1.0,
+          "spread_points": 100.0
+        },
+        "items": {
+          "by_dialect": {
+            "exact": 1.0,
+            "first_word": 0.0,
+            "normalized": 1.0
+          },
+          "flag": "unique_ok",
+          "highest": "exact",
+          "lowest": "first_word",
+          "n": 60,
+          "published": "normalized",
+          "published_rate": 1.0,
+          "spread_points": 100.0
+        },
+        "lines": {
+          "by_dialect": {
+            "all_lines": 1.0,
+            "nonblank": 1.0,
+            "stripped_all": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "stripped_all",
+          "lowest": "nonblank",
+          "n": 45,
+          "published": "nonblank",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "paragraphs": {
+          "by_dialect": {
+            "blank_line": 1.0,
+            "indent_or_blank": 1.0,
+            "single_newline": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "indent_or_blank",
+          "lowest": "blank_line",
+          "n": 45,
+          "published": "blank_line",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "sentences": {
+          "by_dialect": {
+            "naive": 1.0,
+            "newline_breaks": 1.0,
+            "plain": 1.0,
+            "require_terminator": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "require_terminator",
+          "lowest": "plain",
+          "n": 110,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "words": {
+          "by_dialect": {
+            "alpha_only": 1.0,
+            "hyphen_split": 1.0,
+            "plain": 1.0,
+            "whitespace": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "alpha_only",
+          "lowest": "plain",
+          "n": 120,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "worst": {
+          "dimension": "chars",
+          "from": "no_whitespace",
+          "median_spread_points": 0.0,
+          "spread_points": 100.0,
+          "to": "nfc_codepoints"
+        }
+      },
+      "strict": {
+        "families": {
+          "bullets_exact": {
+            "compliant": 70,
+            "count_ok": 70,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 70,
+            "n": 70,
+            "rate": 1.0,
+            "unique_ok": 70
+          },
+          "chars_exact": {
+            "compliant": 50,
+            "count_ok": 50,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 50,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 50,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 50,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 50,
+            "n": 50,
+            "rate": 1.0,
+            "unique_ok": 50
+          },
+          "lines_exact": {
+            "compliant": 45,
+            "count_ok": 45,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 45,
+            "n": 45,
+            "rate": 1.0,
+            "unique_ok": 45
+          },
+          "paragraphs_exact": {
+            "compliant": 45,
+            "count_ok": 45,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 45,
+            "n": 45,
+            "rate": 1.0,
+            "unique_ok": 45
+          },
+          "sentences_at_most": {
+            "compliant": 40,
+            "count_ok": 40,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 40,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 40,
+            "n": 40,
+            "rate": 1.0,
+            "unique_ok": 40
+          },
+          "sentences_exact": {
+            "compliant": 70,
+            "count_ok": 70,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 70,
+            "n": 70,
+            "rate": 1.0,
+            "unique_ok": 70
+          },
+          "unique_items": {
+            "compliant": 60,
+            "count_ok": 60,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 60,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 60,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 60,
+            "n": 60,
+            "rate": 1.0,
+            "unique_ok": 60
+          },
+          "words_at_least": {
+            "compliant": 40,
+            "count_ok": 40,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 40,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 40,
+            "n": 40,
+            "rate": 1.0,
+            "unique_ok": 40
+          },
+          "words_exact": {
+            "compliant": 80,
+            "count_ok": 80,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 80,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 80,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 80,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 80,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 80,
+            "n": 80,
+            "rate": 1.0,
+            "unique_ok": 80
+          }
+        },
+        "overall": {
+          "compliant": 500,
+          "count_ok": 500,
+          "empty": 0,
+          "errors": {
+            "count_violations": 0,
+            "histogram": {
+              "+1": 0,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 0,
+              "-4..-2": 0,
+              "-9..-5": 0,
+              "0": 500,
+              "<=-10": 0,
+              ">=+10": 0
+            },
+            "mean_abs_error": 0.0,
+            "mean_error": 0.0,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 500,
+            "off_by_one": 0,
+            "off_by_one_share_of_misses": null,
+            "over": 0,
+            "under": 0
+          },
+          "errors_exact": {
+            "count_violations": 0,
+            "histogram": {
+              "+1": 0,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 0,
+              "-4..-2": 0,
+              "-9..-5": 0,
+              "0": 420,
+              "<=-10": 0,
+              ">=+10": 0
+            },
+            "mean_abs_error": 0.0,
+            "mean_error": 0.0,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 420,
+            "off_by_one": 0,
+            "off_by_one_share_of_misses": null,
+            "over": 0,
+            "under": 0
+          },
+          "keyword_ok": 500,
+          "n": 500,
+          "rate": 1.0,
+          "unique_ok": 500
+        }
+      },
+      "system": "filler_keyword"
+    },
+    {
+      "fixture": {},
+      "kind": "baseline",
+      "lenient_rate": 0.104,
+      "packaging_gap_points": 0.0,
+      "responses_unwrapped": 0,
+      "sensitivity": {
+        "bullets": {
+          "by_dialect": {
+            "all_levels": 0.3692,
+            "dash_only": 0.0,
+            "plain": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "all_levels",
+          "lowest": "plain",
+          "n": 130,
+          "published": "plain",
+          "published_rate": 0.0,
+          "spread_points": 36.92
+        },
+        "chars": {
+          "by_dialect": {
+            "codepoints": 0.0,
+            "nfc_codepoints": 0.0,
+            "no_whitespace": 0.0,
+            "utf8_bytes": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "nfc_codepoints",
+          "lowest": "codepoints",
+          "n": 50,
+          "published": "codepoints",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "items": {
+          "by_dialect": {
+            "exact": 1.0,
+            "first_word": 0.0833,
+            "normalized": 1.0
+          },
+          "flag": "unique_ok",
+          "highest": "exact",
+          "lowest": "first_word",
+          "n": 60,
+          "published": "normalized",
+          "published_rate": 1.0,
+          "spread_points": 91.67
+        },
+        "lines": {
+          "by_dialect": {
+            "all_lines": 0.5778,
+            "nonblank": 0.0,
+            "stripped_all": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "all_lines",
+          "lowest": "nonblank",
+          "n": 45,
+          "published": "nonblank",
+          "published_rate": 0.0,
+          "spread_points": 57.78
+        },
+        "paragraphs": {
+          "by_dialect": {
+            "blank_line": 0.0,
+            "indent_or_blank": 0.0,
+            "single_newline": 0.1111
+          },
+          "flag": "count_ok",
+          "highest": "single_newline",
+          "lowest": "blank_line",
+          "n": 45,
+          "published": "blank_line",
+          "published_rate": 0.0,
+          "spread_points": 11.11
+        },
+        "sentences": {
+          "by_dialect": {
+            "naive": 0.2364,
+            "newline_breaks": 0.3,
+            "plain": 0.3,
+            "require_terminator": 0.3
+          },
+          "flag": "count_ok",
+          "highest": "require_terminator",
+          "lowest": "naive",
+          "n": 110,
+          "published": "plain",
+          "published_rate": 0.3,
+          "spread_points": 6.36
+        },
+        "words": {
+          "by_dialect": {
+            "alpha_only": 0.1583,
+            "hyphen_split": 0.1583,
+            "plain": 0.1583,
+            "whitespace": 0.1583
+          },
+          "flag": "count_ok",
+          "highest": "alpha_only",
+          "lowest": "plain",
+          "n": 120,
+          "published": "plain",
+          "published_rate": 0.1583,
+          "spread_points": 0.0
+        },
+        "worst": {
+          "dimension": "items",
+          "from": "first_word",
+          "median_spread_points": 11.11,
+          "spread_points": 91.67,
+          "to": "exact"
+        }
+      },
+      "strict": {
+        "families": {
+          "bullets_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 17,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 48,
+                "-4..-2": 5,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.071,
+              "mean_error": -0.586,
+              "median_abs_relative_error": 0.1667,
+              "median_error": -1.0,
+              "n": 70,
+              "off_by_one": 65,
+              "off_by_one_share_of_misses": 0.9286,
+              "over": 17,
+              "under": 53
+            },
+            "errors_exact": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 17,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 48,
+                "-4..-2": 5,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.071,
+              "mean_error": -0.586,
+              "median_abs_relative_error": 0.1667,
+              "median_error": -1.0,
+              "n": 70,
+              "off_by_one": 65,
+              "off_by_one_share_of_misses": 0.9286,
+              "over": 17,
+              "under": 53
+            },
+            "keyword_ok": 70,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "chars_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 2,
+                "+2..+4": 5,
+                "+5..+9": 6,
+                "-1": 1,
+                "-4..-2": 2,
+                "-9..-5": 5,
+                "0": 0,
+                "<=-10": 19,
+                ">=+10": 10
+              },
+              "mean_abs_error": 12.58,
+              "mean_error": -3.54,
+              "median_abs_relative_error": 0.0881,
+              "median_error": -4.0,
+              "n": 50,
+              "off_by_one": 3,
+              "off_by_one_share_of_misses": 0.06,
+              "over": 23,
+              "under": 27
+            },
+            "errors_exact": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 2,
+                "+2..+4": 5,
+                "+5..+9": 6,
+                "-1": 1,
+                "-4..-2": 2,
+                "-9..-5": 5,
+                "0": 0,
+                "<=-10": 19,
+                ">=+10": 10
+              },
+              "mean_abs_error": 12.58,
+              "mean_error": -3.54,
+              "median_abs_relative_error": 0.0881,
+              "median_error": -4.0,
+              "n": 50,
+              "off_by_one": 3,
+              "off_by_one_share_of_misses": 0.06,
+              "over": 23,
+              "under": 27
+            },
+            "keyword_ok": 50,
+            "n": 50,
+            "rate": 0.0,
+            "unique_ok": 50
+          },
+          "lines_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 13,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 30,
+                "-4..-2": 2,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.044,
+              "mean_error": -0.467,
+              "median_abs_relative_error": 0.1429,
+              "median_error": -1,
+              "n": 45,
+              "off_by_one": 43,
+              "off_by_one_share_of_misses": 0.9556,
+              "over": 13,
+              "under": 32
+            },
+            "errors_exact": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 13,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 30,
+                "-4..-2": 2,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.044,
+              "mean_error": -0.467,
+              "median_abs_relative_error": 0.1429,
+              "median_error": -1,
+              "n": 45,
+              "off_by_one": 43,
+              "off_by_one_share_of_misses": 0.9556,
+              "over": 13,
+              "under": 32
+            },
+            "keyword_ok": 45,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "paragraphs_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 14,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 31,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": -0.378,
+              "median_abs_relative_error": 0.25,
+              "median_error": -1,
+              "n": 45,
+              "off_by_one": 45,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 14,
+              "under": 31
+            },
+            "errors_exact": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 14,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 31,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": -0.378,
+              "median_abs_relative_error": 0.25,
+              "median_error": -1,
+              "n": 45,
+              "off_by_one": 45,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 14,
+              "under": 31
+            },
+            "keyword_ok": 45,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "sentences_at_most": {
+            "compliant": 33,
+            "count_ok": 33,
+            "empty": 0,
+            "errors": {
+              "count_violations": 7,
+              "histogram": {
+                "+1": 7,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 33,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": -0.65,
+              "median_abs_relative_error": 0.25,
+              "median_error": -1.0,
+              "n": 40,
+              "off_by_one": 7,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 7,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 40,
+            "n": 40,
+            "rate": 0.825,
+            "unique_ok": 40
+          },
+          "sentences_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 15,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 55,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": -0.571,
+              "median_abs_relative_error": 0.225,
+              "median_error": -1.0,
+              "n": 70,
+              "off_by_one": 70,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 15,
+              "under": 55
+            },
+            "errors_exact": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 15,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 55,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": -0.571,
+              "median_abs_relative_error": 0.225,
+              "median_error": -1.0,
+              "n": 70,
+              "off_by_one": 70,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 15,
+              "under": 55
+            },
+            "keyword_ok": 70,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "unique_items": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 14,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 38,
+                "-4..-2": 8,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.133,
+              "mean_error": -0.667,
+              "median_abs_relative_error": 0.1292,
+              "median_error": -1.0,
+              "n": 60,
+              "off_by_one": 52,
+              "off_by_one_share_of_misses": 0.8667,
+              "over": 14,
+              "under": 46
+            },
+            "errors_exact": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 14,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 38,
+                "-4..-2": 8,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.133,
+              "mean_error": -0.667,
+              "median_abs_relative_error": 0.1292,
+              "median_error": -1.0,
+              "n": 60,
+              "off_by_one": 52,
+              "off_by_one_share_of_misses": 0.8667,
+              "over": 14,
+              "under": 46
+            },
+            "keyword_ok": 60,
+            "n": 60,
+            "rate": 0.0,
+            "unique_ok": 60
+          },
+          "words_at_least": {
+            "compliant": 19,
+            "count_ok": 19,
+            "empty": 0,
+            "errors": {
+              "count_violations": 21,
+              "histogram": {
+                "+1": 7,
+                "+2..+4": 6,
+                "+5..+9": 6,
+                "-1": 6,
+                "-4..-2": 9,
+                "-9..-5": 2,
+                "0": 0,
+                "<=-10": 4,
+                ">=+10": 0
+              },
+              "mean_abs_error": 4.075,
+              "mean_error": -0.525,
+              "median_abs_relative_error": 0.0661,
+              "median_error": -1.0,
+              "n": 40,
+              "off_by_one": 6,
+              "off_by_one_share_of_misses": 0.2857,
+              "over": 0,
+              "under": 21
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 40,
+            "n": 40,
+            "rate": 0.475,
+            "unique_ok": 40
+          },
+          "words_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 80,
+              "histogram": {
+                "+1": 7,
+                "+2..+4": 12,
+                "+5..+9": 11,
+                "-1": 9,
+                "-4..-2": 16,
+                "-9..-5": 15,
+                "0": 0,
+                "<=-10": 8,
+                ">=+10": 2
+              },
+              "mean_abs_error": 4.787,
+              "mean_error": -1.288,
+              "median_abs_relative_error": 0.0698,
+              "median_error": -1.0,
+              "n": 80,
+              "off_by_one": 16,
+              "off_by_one_share_of_misses": 0.2,
+              "over": 32,
+              "under": 48
+            },
+            "errors_exact": {
+              "count_violations": 80,
+              "histogram": {
+                "+1": 7,
+                "+2..+4": 12,
+                "+5..+9": 11,
+                "-1": 9,
+                "-4..-2": 16,
+                "-9..-5": 15,
+                "0": 0,
+                "<=-10": 8,
+                ">=+10": 2
+              },
+              "mean_abs_error": 4.787,
+              "mean_error": -1.288,
+              "median_abs_relative_error": 0.0698,
+              "median_error": -1.0,
+              "n": 80,
+              "off_by_one": 16,
+              "off_by_one_share_of_misses": 0.2,
+              "over": 32,
+              "under": 48
+            },
+            "keyword_ok": 80,
+            "n": 80,
+            "rate": 0.0,
+            "unique_ok": 80
+          }
+        },
+        "overall": {
+          "compliant": 52,
+          "count_ok": 52,
+          "empty": 0,
+          "errors": {
+            "count_violations": 448,
+            "histogram": {
+              "+1": 96,
+              "+2..+4": 23,
+              "+5..+9": 23,
+              "-1": 251,
+              "-4..-2": 42,
+              "-9..-5": 22,
+              "0": 0,
+              "<=-10": 31,
+              ">=+10": 12
+            },
+            "mean_abs_error": 3.04,
+            "mean_error": -0.972,
+            "median_abs_relative_error": 0.1429,
+            "median_error": -1.0,
+            "n": 500,
+            "off_by_one": 307,
+            "off_by_one_share_of_misses": 0.6853,
+            "over": 135,
+            "under": 313
+          },
+          "errors_exact": {
+            "count_violations": 420,
+            "histogram": {
+              "+1": 82,
+              "+2..+4": 17,
+              "+5..+9": 17,
+              "-1": 212,
+              "-4..-2": 33,
+              "-9..-5": 20,
+              "0": 0,
+              "<=-10": 27,
+              ">=+10": 12
+            },
+            "mean_abs_error": 3.136,
+            "mean_error": -1.045,
+            "median_abs_relative_error": 0.1429,
+            "median_error": -1.0,
+            "n": 420,
+            "off_by_one": 294,
+            "off_by_one_share_of_misses": 0.7,
+            "over": 128,
+            "under": 292
+          },
+          "keyword_ok": 500,
+          "n": 500,
+          "rate": 0.104,
+          "unique_ok": 500
+        }
+      },
+      "system": "approximate"
+    },
+    {
+      "fixture": {},
+      "kind": "baseline",
+      "lenient_rate": 0.0,
+      "packaging_gap_points": 0.0,
+      "responses_unwrapped": 0,
+      "sensitivity": {
+        "bullets": {
+          "by_dialect": {
+            "all_levels": 0.0,
+            "dash_only": 0.0,
+            "plain": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "dash_only",
+          "lowest": "plain",
+          "n": 130,
+          "published": "plain",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "chars": {
+          "by_dialect": {
+            "codepoints": 0.0,
+            "nfc_codepoints": 0.0,
+            "no_whitespace": 0.0,
+            "utf8_bytes": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "nfc_codepoints",
+          "lowest": "codepoints",
+          "n": 50,
+          "published": "codepoints",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "items": {
+          "by_dialect": {
+            "exact": 1.0,
+            "first_word": 0.0333,
+            "normalized": 1.0
+          },
+          "flag": "unique_ok",
+          "highest": "exact",
+          "lowest": "first_word",
+          "n": 60,
+          "published": "normalized",
+          "published_rate": 1.0,
+          "spread_points": 96.67
+        },
+        "lines": {
+          "by_dialect": {
+            "all_lines": 0.0,
+            "nonblank": 0.0,
+            "stripped_all": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "stripped_all",
+          "lowest": "nonblank",
+          "n": 45,
+          "published": "nonblank",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "paragraphs": {
+          "by_dialect": {
+            "blank_line": 0.0,
+            "indent_or_blank": 0.0,
+            "single_newline": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "indent_or_blank",
+          "lowest": "blank_line",
+          "n": 45,
+          "published": "blank_line",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "sentences": {
+          "by_dialect": {
+            "naive": 0.0,
+            "newline_breaks": 0.0,
+            "plain": 0.0,
+            "require_terminator": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "require_terminator",
+          "lowest": "plain",
+          "n": 110,
+          "published": "plain",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "words": {
+          "by_dialect": {
+            "alpha_only": 0.0,
+            "hyphen_split": 0.0,
+            "plain": 0.0,
+            "whitespace": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "alpha_only",
+          "lowest": "plain",
+          "n": 120,
+          "published": "plain",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "worst": {
+          "dimension": "items",
+          "from": "first_word",
+          "median_spread_points": 0.0,
+          "spread_points": 96.67,
+          "to": "exact"
+        }
+      },
+      "strict": {
+        "families": {
+          "bullets_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 70,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.1548,
+              "median_error": 1.0,
+              "n": 70,
+              "off_by_one": 70,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 70,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 70,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.1548,
+              "median_error": 1.0,
+              "n": 70,
+              "off_by_one": 70,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 70,
+              "under": 0
+            },
+            "keyword_ok": 70,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "chars_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 50,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.0064,
+              "median_error": 1.0,
+              "n": 50,
+              "off_by_one": 50,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 50,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 50,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.0064,
+              "median_error": 1.0,
+              "n": 50,
+              "off_by_one": 50,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 50,
+              "under": 0
+            },
+            "keyword_ok": 50,
+            "n": 50,
+            "rate": 0.0,
+            "unique_ok": 50
+          },
+          "lines_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 45,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.1429,
+              "median_error": 1,
+              "n": 45,
+              "off_by_one": 45,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 45,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 45,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.1429,
+              "median_error": 1,
+              "n": 45,
+              "off_by_one": 45,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 45,
+              "under": 0
+            },
+            "keyword_ok": 45,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "paragraphs_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 45,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.25,
+              "median_error": 1,
+              "n": 45,
+              "off_by_one": 45,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 45,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 45,
+              "histogram": {
+                "+1": 45,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.25,
+              "median_error": 1,
+              "n": 45,
+              "off_by_one": 45,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 45,
+              "under": 0
+            },
+            "keyword_ok": 45,
+            "n": 45,
+            "rate": 0.0,
+            "unique_ok": 45
+          },
+          "sentences_at_most": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 40,
+              "histogram": {
+                "+1": 40,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.25,
+              "median_error": 1.0,
+              "n": 40,
+              "off_by_one": 40,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 40,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 40,
+            "n": 40,
+            "rate": 0.0,
+            "unique_ok": 40
+          },
+          "sentences_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 70,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.225,
+              "median_error": 1.0,
+              "n": 70,
+              "off_by_one": 70,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 70,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 70,
+              "histogram": {
+                "+1": 70,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.225,
+              "median_error": 1.0,
+              "n": 70,
+              "off_by_one": 70,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 70,
+              "under": 0
+            },
+            "keyword_ok": 70,
+            "n": 70,
+            "rate": 0.0,
+            "unique_ok": 70
+          },
+          "unique_items": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 60,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.1111,
+              "median_error": 1.0,
+              "n": 60,
+              "off_by_one": 60,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 60,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 60,
+              "histogram": {
+                "+1": 60,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.1111,
+              "median_error": 1.0,
+              "n": 60,
+              "off_by_one": 60,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 60,
+              "under": 0
+            },
+            "keyword_ok": 60,
+            "n": 60,
+            "rate": 0.0,
+            "unique_ok": 60
+          },
+          "words_at_least": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 40,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 40,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": -1.0,
+              "median_abs_relative_error": 0.0153,
+              "median_error": -1.0,
+              "n": 40,
+              "off_by_one": 40,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 0,
+              "under": 40
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 40,
+            "n": 40,
+            "rate": 0.0,
+            "unique_ok": 40
+          },
+          "words_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 80,
+              "histogram": {
+                "+1": 80,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.0148,
+              "median_error": 1.0,
+              "n": 80,
+              "off_by_one": 80,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 80,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 80,
+              "histogram": {
+                "+1": 80,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 1.0,
+              "mean_error": 1.0,
+              "median_abs_relative_error": 0.0148,
+              "median_error": 1.0,
+              "n": 80,
+              "off_by_one": 80,
+              "off_by_one_share_of_misses": 1.0,
+              "over": 80,
+              "under": 0
+            },
+            "keyword_ok": 80,
+            "n": 80,
+            "rate": 0.0,
+            "unique_ok": 80
+          }
+        },
+        "overall": {
+          "compliant": 0,
+          "count_ok": 0,
+          "empty": 0,
+          "errors": {
+            "count_violations": 500,
+            "histogram": {
+              "+1": 460,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 40,
+              "-4..-2": 0,
+              "-9..-5": 0,
+              "0": 0,
+              "<=-10": 0,
+              ">=+10": 0
+            },
+            "mean_abs_error": 1.0,
+            "mean_error": 0.84,
+            "median_abs_relative_error": 0.125,
+            "median_error": 1.0,
+            "n": 500,
+            "off_by_one": 500,
+            "off_by_one_share_of_misses": 1.0,
+            "over": 460,
+            "under": 40
+          },
+          "errors_exact": {
+            "count_violations": 420,
+            "histogram": {
+              "+1": 420,
+              "+2..+4": 0,
+              "+5..+9": 0,
+              "-1": 0,
+              "-4..-2": 0,
+              "-9..-5": 0,
+              "0": 0,
+              "<=-10": 0,
+              ">=+10": 0
+            },
+            "mean_abs_error": 1.0,
+            "mean_error": 1.0,
+            "median_abs_relative_error": 0.125,
+            "median_error": 1.0,
+            "n": 420,
+            "off_by_one": 420,
+            "off_by_one_share_of_misses": 1.0,
+            "over": 420,
+            "under": 0
+          },
+          "keyword_ok": 500,
+          "n": 500,
+          "rate": 0.0,
+          "unique_ok": 500
+        }
+      },
+      "system": "off_by_one"
+    },
+    {
+      "fixture": {
+        "first_missing": null,
+        "max_thinking_chars": 0,
+        "missing": 0,
+        "num_predict": [
+          1200
+        ],
+        "rows": 500,
+        "transport_errors": 0,
+        "truncated": 0,
+        "truncated_share": 0.0
+      },
+      "kind": "model",
+      "lenient_rate": 0.65,
+      "packaging_gap_points": 0.0,
+      "responses_unwrapped": 0,
+      "sensitivity": {
+        "bullets": {
+          "by_dialect": {
+            "all_levels": 0.8,
+            "dash_only": 0.8,
+            "plain": 0.8
+          },
+          "flag": "count_ok",
+          "highest": "dash_only",
+          "lowest": "plain",
+          "n": 130,
+          "published": "plain",
+          "published_rate": 0.8,
+          "spread_points": 0.0
+        },
+        "chars": {
+          "by_dialect": {
+            "codepoints": 0.0,
+            "nfc_codepoints": 0.0,
+            "no_whitespace": 0.02,
+            "utf8_bytes": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "no_whitespace",
+          "lowest": "codepoints",
+          "n": 50,
+          "published": "codepoints",
+          "published_rate": 0.0,
+          "spread_points": 2.0
+        },
+        "items": {
+          "by_dialect": {
+            "exact": 1.0,
+            "first_word": 0.2167,
+            "normalized": 1.0
+          },
+          "flag": "unique_ok",
+          "highest": "exact",
+          "lowest": "first_word",
+          "n": 60,
+          "published": "normalized",
+          "published_rate": 1.0,
+          "spread_points": 78.33
+        },
+        "lines": {
+          "by_dialect": {
+            "all_lines": 1.0,
+            "nonblank": 1.0,
+            "stripped_all": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "stripped_all",
+          "lowest": "nonblank",
+          "n": 45,
+          "published": "nonblank",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "paragraphs": {
+          "by_dialect": {
+            "blank_line": 1.0,
+            "indent_or_blank": 1.0,
+            "single_newline": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "indent_or_blank",
+          "lowest": "blank_line",
+          "n": 45,
+          "published": "blank_line",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "sentences": {
+          "by_dialect": {
+            "naive": 1.0,
+            "newline_breaks": 1.0,
+            "plain": 1.0,
+            "require_terminator": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "require_terminator",
+          "lowest": "plain",
+          "n": 110,
+          "published": "plain",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "words": {
+          "by_dialect": {
+            "alpha_only": 0.3417,
+            "hyphen_split": 0.35,
+            "plain": 0.3417,
+            "whitespace": 0.3417
+          },
+          "flag": "count_ok",
+          "highest": "hyphen_split",
+          "lowest": "plain",
+          "n": 120,
+          "published": "plain",
+          "published_rate": 0.3417,
+          "spread_points": 0.83
+        },
+        "worst": {
+          "dimension": "items",
+          "from": "first_word",
+          "median_spread_points": 0.0,
+          "spread_points": 78.33,
+          "to": "exact"
+        }
+      },
+      "strict": {
+        "families": {
+          "bullets_exact": {
+            "compliant": 67,
+            "count_ok": 70,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 67,
+            "n": 70,
+            "rate": 0.9571,
+            "unique_ok": 70
+          },
+          "chars_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 2,
+                "+5..+9": 6,
+                "-1": 1,
+                "-4..-2": 4,
+                "-9..-5": 6,
+                "0": 0,
+                "<=-10": 7,
+                ">=+10": 24
+              },
+              "mean_abs_error": 29.18,
+              "mean_error": 21.82,
+              "median_abs_relative_error": 0.0917,
+              "median_error": 7.5,
+              "n": 50,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.02,
+              "over": 32,
+              "under": 18
+            },
+            "errors_exact": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 2,
+                "+5..+9": 6,
+                "-1": 1,
+                "-4..-2": 4,
+                "-9..-5": 6,
+                "0": 0,
+                "<=-10": 7,
+                ">=+10": 24
+              },
+              "mean_abs_error": 29.18,
+              "mean_error": 21.82,
+              "median_abs_relative_error": 0.0917,
+              "median_error": 7.5,
+              "n": 50,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.02,
+              "over": 32,
+              "under": 18
+            },
+            "keyword_ok": 45,
+            "n": 50,
+            "rate": 0.0,
+            "unique_ok": 50
+          },
+          "lines_exact": {
+            "compliant": 42,
+            "count_ok": 45,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 42,
+            "n": 45,
+            "rate": 0.9333,
+            "unique_ok": 45
+          },
+          "paragraphs_exact": {
+            "compliant": 43,
+            "count_ok": 45,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 43,
+            "n": 45,
+            "rate": 0.9556,
+            "unique_ok": 45
+          },
+          "sentences_at_most": {
+            "compliant": 34,
+            "count_ok": 40,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 2,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 38,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.05,
+              "mean_error": -0.05,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 34,
+            "n": 40,
+            "rate": 0.85,
+            "unique_ok": 40
+          },
+          "sentences_exact": {
+            "compliant": 69,
+            "count_ok": 70,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 70,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 69,
+            "n": 70,
+            "rate": 0.9857,
+            "unique_ok": 70
+          },
+          "unique_items": {
+            "compliant": 32,
+            "count_ok": 34,
+            "empty": 0,
+            "errors": {
+              "count_violations": 26,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 3,
+                "+5..+9": 0,
+                "-1": 21,
+                "-4..-2": 2,
+                "-9..-5": 0,
+                "0": 34,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.583,
+              "mean_error": -0.283,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 21,
+              "off_by_one_share_of_misses": 0.8077,
+              "over": 3,
+              "under": 23
+            },
+            "errors_exact": {
+              "count_violations": 26,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 3,
+                "+5..+9": 0,
+                "-1": 21,
+                "-4..-2": 2,
+                "-9..-5": 0,
+                "0": 34,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.583,
+              "mean_error": -0.283,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 21,
+              "off_by_one_share_of_misses": 0.8077,
+              "over": 3,
+              "under": 23
+            },
+            "keyword_ok": 56,
+            "n": 60,
+            "rate": 0.5333,
+            "unique_ok": 60
+          },
+          "words_at_least": {
+            "compliant": 37,
+            "count_ok": 40,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 2,
+                "+5..+9": 2,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 36
+              },
+              "mean_abs_error": 18.4,
+              "mean_error": 18.4,
+              "median_abs_relative_error": 0.3022,
+              "median_error": 17.5,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 37,
+            "n": 40,
+            "rate": 0.925,
+            "unique_ok": 40
+          },
+          "words_exact": {
+            "compliant": 1,
+            "count_ok": 1,
+            "empty": 0,
+            "errors": {
+              "count_violations": 79,
+              "histogram": {
+                "+1": 1,
+                "+2..+4": 3,
+                "+5..+9": 1,
+                "-1": 5,
+                "-4..-2": 21,
+                "-9..-5": 18,
+                "0": 1,
+                "<=-10": 30,
+                ">=+10": 0
+              },
+              "mean_abs_error": 8.75,
+              "mean_error": -8.325,
+              "median_abs_relative_error": 0.1508,
+              "median_error": -6.5,
+              "n": 80,
+              "off_by_one": 6,
+              "off_by_one_share_of_misses": 0.0759,
+              "over": 5,
+              "under": 74
+            },
+            "errors_exact": {
+              "count_violations": 79,
+              "histogram": {
+                "+1": 1,
+                "+2..+4": 3,
+                "+5..+9": 1,
+                "-1": 5,
+                "-4..-2": 21,
+                "-9..-5": 18,
+                "0": 1,
+                "<=-10": 30,
+                ">=+10": 0
+              },
+              "mean_abs_error": 8.75,
+              "mean_error": -8.325,
+              "median_abs_relative_error": 0.1508,
+              "median_error": -6.5,
+              "n": 80,
+              "off_by_one": 6,
+              "off_by_one_share_of_misses": 0.0759,
+              "over": 5,
+              "under": 74
+            },
+            "keyword_ok": 72,
+            "n": 80,
+            "rate": 0.0125,
+            "unique_ok": 80
+          }
+        },
+        "overall": {
+          "compliant": 325,
+          "count_ok": 345,
+          "empty": 0,
+          "errors": {
+            "count_violations": 155,
+            "histogram": {
+              "+1": 1,
+              "+2..+4": 10,
+              "+5..+9": 9,
+              "-1": 29,
+              "-4..-2": 27,
+              "-9..-5": 24,
+              "0": 303,
+              "<=-10": 37,
+              ">=+10": 60
+            },
+            "mean_abs_error": 5.864,
+            "mean_error": 2.284,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 500,
+            "off_by_one": 28,
+            "off_by_one_share_of_misses": 0.1806,
+            "over": 40,
+            "under": 115
+          },
+          "errors_exact": {
+            "count_violations": 155,
+            "histogram": {
+              "+1": 1,
+              "+2..+4": 8,
+              "+5..+9": 7,
+              "-1": 27,
+              "-4..-2": 27,
+              "-9..-5": 24,
+              "0": 265,
+              "<=-10": 37,
+              ">=+10": 24
+            },
+            "mean_abs_error": 5.224,
+            "mean_error": 0.971,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 420,
+            "off_by_one": 28,
+            "off_by_one_share_of_misses": 0.1806,
+            "over": 40,
+            "under": 115
+          },
+          "keyword_ok": 465,
+          "n": 500,
+          "rate": 0.65,
+          "unique_ok": 500
+        }
+      },
+      "system": "gemma4_e4b"
+    },
+    {
+      "fixture": {
+        "first_missing": null,
+        "max_thinking_chars": 0,
+        "missing": 0,
+        "num_predict": [
+          1200
+        ],
+        "rows": 500,
+        "transport_errors": 0,
+        "truncated": 0,
+        "truncated_share": 0.0
+      },
+      "kind": "model",
+      "lenient_rate": 0.644,
+      "packaging_gap_points": 0.0,
+      "responses_unwrapped": 1,
+      "sensitivity": {
+        "bullets": {
+          "by_dialect": {
+            "all_levels": 0.8692,
+            "dash_only": 0.8615,
+            "plain": 0.8692
+          },
+          "flag": "count_ok",
+          "highest": "all_levels",
+          "lowest": "dash_only",
+          "n": 130,
+          "published": "plain",
+          "published_rate": 0.8692,
+          "spread_points": 0.77
+        },
+        "chars": {
+          "by_dialect": {
+            "codepoints": 0.0,
+            "nfc_codepoints": 0.0,
+            "no_whitespace": 0.0,
+            "utf8_bytes": 0.0
+          },
+          "flag": "count_ok",
+          "highest": "nfc_codepoints",
+          "lowest": "codepoints",
+          "n": 50,
+          "published": "codepoints",
+          "published_rate": 0.0,
+          "spread_points": 0.0
+        },
+        "items": {
+          "by_dialect": {
+            "exact": 1.0,
+            "first_word": 0.0333,
+            "normalized": 1.0
+          },
+          "flag": "unique_ok",
+          "highest": "exact",
+          "lowest": "first_word",
+          "n": 60,
+          "published": "normalized",
+          "published_rate": 1.0,
+          "spread_points": 96.67
+        },
+        "lines": {
+          "by_dialect": {
+            "all_lines": 0.8889,
+            "nonblank": 0.9556,
+            "stripped_all": 0.9556
+          },
+          "flag": "count_ok",
+          "highest": "stripped_all",
+          "lowest": "all_lines",
+          "n": 45,
+          "published": "nonblank",
+          "published_rate": 0.9556,
+          "spread_points": 6.67
+        },
+        "paragraphs": {
+          "by_dialect": {
+            "blank_line": 1.0,
+            "indent_or_blank": 1.0,
+            "single_newline": 1.0
+          },
+          "flag": "count_ok",
+          "highest": "indent_or_blank",
+          "lowest": "blank_line",
+          "n": 45,
+          "published": "blank_line",
+          "published_rate": 1.0,
+          "spread_points": 0.0
+        },
+        "sentences": {
+          "by_dialect": {
+            "naive": 0.9545,
+            "newline_breaks": 0.9727,
+            "plain": 0.9727,
+            "require_terminator": 0.9727
+          },
+          "flag": "count_ok",
+          "highest": "require_terminator",
+          "lowest": "naive",
+          "n": 110,
+          "published": "plain",
+          "published_rate": 0.9727,
+          "spread_points": 1.82
+        },
+        "words": {
+          "by_dialect": {
+            "alpha_only": 0.35,
+            "hyphen_split": 0.3583,
+            "plain": 0.35,
+            "whitespace": 0.35
+          },
+          "flag": "count_ok",
+          "highest": "hyphen_split",
+          "lowest": "plain",
+          "n": 120,
+          "published": "plain",
+          "published_rate": 0.35,
+          "spread_points": 0.83
+        },
+        "worst": {
+          "dimension": "items",
+          "from": "first_word",
+          "median_spread_points": 0.83,
+          "spread_points": 96.67,
+          "to": "exact"
+        }
+      },
+      "strict": {
+        "families": {
+          "bullets_exact": {
+            "compliant": 61,
+            "count_ok": 63,
+            "empty": 0,
+            "errors": {
+              "count_violations": 7,
+              "histogram": {
+                "+1": 3,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 1,
+                "-4..-2": 0,
+                "-9..-5": 1,
+                "0": 63,
+                "<=-10": 2,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.5,
+              "mean_error": -0.414,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 4,
+              "off_by_one_share_of_misses": 0.5714,
+              "over": 3,
+              "under": 4
+            },
+            "errors_exact": {
+              "count_violations": 7,
+              "histogram": {
+                "+1": 3,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 1,
+                "-4..-2": 0,
+                "-9..-5": 1,
+                "0": 63,
+                "<=-10": 2,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.5,
+              "mean_error": -0.414,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 4,
+              "off_by_one_share_of_misses": 0.5714,
+              "over": 3,
+              "under": 4
+            },
+            "keyword_ok": 68,
+            "n": 70,
+            "rate": 0.8714,
+            "unique_ok": 70
+          },
+          "chars_exact": {
+            "compliant": 0,
+            "count_ok": 0,
+            "empty": 0,
+            "errors": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 1,
+                "+2..+4": 3,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 1,
+                "-9..-5": 3,
+                "0": 0,
+                "<=-10": 23,
+                ">=+10": 19
+              },
+              "mean_abs_error": 42.18,
+              "mean_error": -4.46,
+              "median_abs_relative_error": 0.2133,
+              "median_error": -5.5,
+              "n": 50,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.02,
+              "over": 23,
+              "under": 27
+            },
+            "errors_exact": {
+              "count_violations": 50,
+              "histogram": {
+                "+1": 1,
+                "+2..+4": 3,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 1,
+                "-9..-5": 3,
+                "0": 0,
+                "<=-10": 23,
+                ">=+10": 19
+              },
+              "mean_abs_error": 42.18,
+              "mean_error": -4.46,
+              "median_abs_relative_error": 0.2133,
+              "median_error": -5.5,
+              "n": 50,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.02,
+              "over": 23,
+              "under": 27
+            },
+            "keyword_ok": 44,
+            "n": 50,
+            "rate": 0.0,
+            "unique_ok": 50
+          },
+          "lines_exact": {
+            "compliant": 40,
+            "count_ok": 43,
+            "empty": 0,
+            "errors": {
+              "count_violations": 2,
+              "histogram": {
+                "+1": 1,
+                "+2..+4": 1,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 43,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.067,
+              "mean_error": 0.067,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.5,
+              "over": 2,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 2,
+              "histogram": {
+                "+1": 1,
+                "+2..+4": 1,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 43,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.067,
+              "mean_error": 0.067,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.5,
+              "over": 2,
+              "under": 0
+            },
+            "keyword_ok": 42,
+            "n": 45,
+            "rate": 0.8889,
+            "unique_ok": 45
+          },
+          "paragraphs_exact": {
+            "compliant": 45,
+            "count_ok": 45,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 45,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.0,
+              "mean_error": 0.0,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0,
+              "n": 45,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 45,
+            "n": 45,
+            "rate": 1.0,
+            "unique_ok": 45
+          },
+          "sentences_at_most": {
+            "compliant": 36,
+            "count_ok": 40,
+            "empty": 0,
+            "errors": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 4,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 36,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.1,
+              "mean_error": -0.1,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 40,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 36,
+            "n": 40,
+            "rate": 0.9,
+            "unique_ok": 40
+          },
+          "sentences_exact": {
+            "compliant": 61,
+            "count_ok": 67,
+            "empty": 0,
+            "errors": {
+              "count_violations": 3,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 2,
+                "-4..-2": 1,
+                "-9..-5": 0,
+                "0": 67,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.057,
+              "mean_error": -0.057,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 2,
+              "off_by_one_share_of_misses": 0.6667,
+              "over": 0,
+              "under": 3
+            },
+            "errors_exact": {
+              "count_violations": 3,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 2,
+                "-4..-2": 1,
+                "-9..-5": 0,
+                "0": 67,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.057,
+              "mean_error": -0.057,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 70,
+              "off_by_one": 2,
+              "off_by_one_share_of_misses": 0.6667,
+              "over": 0,
+              "under": 3
+            },
+            "keyword_ok": 64,
+            "n": 70,
+            "rate": 0.8714,
+            "unique_ok": 70
+          },
+          "unique_items": {
+            "compliant": 43,
+            "count_ok": 50,
+            "empty": 0,
+            "errors": {
+              "count_violations": 10,
+              "histogram": {
+                "+1": 2,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 7,
+                "-4..-2": 1,
+                "-9..-5": 0,
+                "0": 50,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.183,
+              "mean_error": -0.117,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 9,
+              "off_by_one_share_of_misses": 0.9,
+              "over": 2,
+              "under": 8
+            },
+            "errors_exact": {
+              "count_violations": 10,
+              "histogram": {
+                "+1": 2,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 7,
+                "-4..-2": 1,
+                "-9..-5": 0,
+                "0": 50,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": 0.183,
+              "mean_error": -0.117,
+              "median_abs_relative_error": 0.0,
+              "median_error": 0.0,
+              "n": 60,
+              "off_by_one": 9,
+              "off_by_one_share_of_misses": 0.9,
+              "over": 2,
+              "under": 8
+            },
+            "keyword_ok": 53,
+            "n": 60,
+            "rate": 0.7167,
+            "unique_ok": 60
+          },
+          "words_at_least": {
+            "compliant": 31,
+            "count_ok": 37,
+            "empty": 0,
+            "errors": {
+              "count_violations": 3,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 1,
+                "+5..+9": 1,
+                "-1": 1,
+                "-4..-2": 2,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 35
+              },
+              "mean_abs_error": 39.075,
+              "mean_error": 38.775,
+              "median_abs_relative_error": 0.5823,
+              "median_error": 30.0,
+              "n": 40,
+              "off_by_one": 1,
+              "off_by_one_share_of_misses": 0.3333,
+              "over": 0,
+              "under": 3
+            },
+            "errors_exact": {
+              "count_violations": 0,
+              "histogram": {
+                "+1": 0,
+                "+2..+4": 0,
+                "+5..+9": 0,
+                "-1": 0,
+                "-4..-2": 0,
+                "-9..-5": 0,
+                "0": 0,
+                "<=-10": 0,
+                ">=+10": 0
+              },
+              "mean_abs_error": null,
+              "mean_error": null,
+              "median_abs_relative_error": null,
+              "median_error": null,
+              "n": 0,
+              "off_by_one": 0,
+              "off_by_one_share_of_misses": null,
+              "over": 0,
+              "under": 0
+            },
+            "keyword_ok": 34,
+            "n": 40,
+            "rate": 0.775,
+            "unique_ok": 40
+          },
+          "words_exact": {
+            "compliant": 5,
+            "count_ok": 5,
+            "empty": 0,
+            "errors": {
+              "count_violations": 75,
+              "histogram": {
+                "+1": 2,
+                "+2..+4": 2,
+                "+5..+9": 2,
+                "-1": 10,
+                "-4..-2": 12,
+                "-9..-5": 23,
+                "0": 5,
+                "<=-10": 24,
+                ">=+10": 0
+              },
+              "mean_abs_error": 8.725,
+              "mean_error": -8.25,
+              "median_abs_relative_error": 0.0958,
+              "median_error": -6.0,
+              "n": 80,
+              "off_by_one": 12,
+              "off_by_one_share_of_misses": 0.16,
+              "over": 6,
+              "under": 69
+            },
+            "errors_exact": {
+              "count_violations": 75,
+              "histogram": {
+                "+1": 2,
+                "+2..+4": 2,
+                "+5..+9": 2,
+                "-1": 10,
+                "-4..-2": 12,
+                "-9..-5": 23,
+                "0": 5,
+                "<=-10": 24,
+                ">=+10": 0
+              },
+              "mean_abs_error": 8.725,
+              "mean_error": -8.25,
+              "median_abs_relative_error": 0.0958,
+              "median_error": -6.0,
+              "n": 80,
+              "off_by_one": 12,
+              "off_by_one_share_of_misses": 0.16,
+              "over": 6,
+              "under": 69
+            },
+            "keyword_ok": 74,
+            "n": 80,
+            "rate": 0.0625,
+            "unique_ok": 80
+          }
+        },
+        "overall": {
+          "compliant": 322,
+          "count_ok": 350,
+          "empty": 0,
+          "errors": {
+            "count_violations": 150,
+            "histogram": {
+              "+1": 9,
+              "+2..+4": 7,
+              "+5..+9": 3,
+              "-1": 25,
+              "-4..-2": 17,
+              "-9..-5": 27,
+              "0": 309,
+              "<=-10": 49,
+              ">=+10": 54
+            },
+            "mean_abs_error": 8.854,
+            "mean_error": 1.254,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 500,
+            "off_by_one": 30,
+            "off_by_one_share_of_misses": 0.2,
+            "over": 36,
+            "under": 114
+          },
+          "errors_exact": {
+            "count_violations": 147,
+            "histogram": {
+              "+1": 9,
+              "+2..+4": 6,
+              "+5..+9": 2,
+              "-1": 20,
+              "-4..-2": 15,
+              "-9..-5": 27,
+              "0": 273,
+              "<=-10": 49,
+              ">=+10": 19
+            },
+            "mean_abs_error": 6.81,
+            "mean_error": -2.19,
+            "median_abs_relative_error": 0.0,
+            "median_error": 0.0,
+            "n": 420,
+            "off_by_one": 29,
+            "off_by_one_share_of_misses": 0.1973,
+            "over": 36,
+            "under": 111
+          },
+          "keyword_ok": 460,
+          "n": 500,
+          "rate": 0.644,
+          "unique_ok": 500
+        }
+      },
+      "system": "llama3.2_3b"
+    }
+  ]
+}

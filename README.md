@@ -231,10 +231,14 @@ unit tests: 144 passed
 
 ## Unfinished
 
-- **Three small local models, no frontier models.** The board holds gemma4:e4b, llama3.2:3b and
-  qwen3.5:9b, all through ollama on one workstation. Nothing here has been run against a hosted
-  model, so the leaderboard says what small open models do and cannot say what the constraint
-  costs at the top of the range.
+- **Two small local models, no frontier models.** The board holds gemma4:e4b and llama3.2:3b,
+  both through ollama on one workstation. Nothing here has been run against a hosted model, so the
+  leaderboard says what small open models do and cannot say what the constraint costs at the top
+  of the range. A third, qwen3.5:9b, was recorded and left off: 45 of its 500 answers ran past the
+  1200 token budget, and repairing those rows at a larger budget takes hours of exclusive GPU time
+  that was not available. The machinery for the repair is in `scripts/record.py` and the fixture
+  is not committed, because a fixture that does not cover the whole dataset is refused rather than
+  scored on the families the run happened to reach.
 - **gpt-oss:20b is measured but not scored.** It is the one reasoning model on this machine and
   the budget needed to get a usable recording out of it is several times any answer's length,
   which measures the harness rather than the model. The evidence file explains it.
