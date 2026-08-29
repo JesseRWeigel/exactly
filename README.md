@@ -225,9 +225,43 @@ something it did not run, and a step that cannot run is a failure rather than a 
 
 ## Status
 
+Pasted from a real run of `bash scripts/verify.sh`, exit code 0. Re-running it reproduces this
+block exactly; nothing variable is printed, no elapsed times and no temporary paths.
+
 ```
+exactly: exact-count compliance, verify
+
+     tracked files: 54
+ok   the repository has a working tree to verify
+ok   unit tests: 158 passed
+ok   the suite is large enough to mean something
+ok   every derived file regenerates byte for byte
+  ok   regenerate build
+  ok   regenerate answers
+  ok   regenerate report
+  ok   regenerate page
+  ok   data/problems.jsonl matches the regenerated file
+  ok   data/dataset.json matches the regenerated file
+  ok   results/leaderboard.json matches the regenerated file
+  ok   docs/index.html matches the regenerated file
+  ok   results/answers: 7 file(s) match the regenerated form
+ok   the fingerprint is stable across two runs
+ok   the fingerprint does not depend on where the code lives
+     fingerprint: 587e6f2d45eacf43bcdfc10e855700a4683f349c405b873666cf2b0f0a175ede
+ok   an independent recount agrees with every headline number
+ok   the privacy scan finds its positive controls and nothing else
+ok   no tracked file is larger than a megabyte
+ok   the README exists
+ok   the README carries a Status section
+ok   the README carries a Unfinished section
+ok   the README Status quotes this run's success line
+ok   the README Status quotes this run's test count
+ok   the README Status quotes this run's fingerprint
+ok   the README prose has no scaffold markers left in it
+ok   the verify run did not modify the tree it verifies
+
+steps passed: 17, failed: 0
 VERIFY PASSED: exactly
-unit tests: 144 passed
 ```
 
 ## Unfinished
