@@ -5,10 +5,10 @@ This exists because of a finding that nearly went into the leaderboard as a fact
 
 Recording gpt-oss:20b with `think: false` produced answers like `Stonemasons rely on`, three words
 against a target of twenty. Read at face value that is a model with no idea how long its own
-output is. It is a model that never finished the sentence: the server accepted `think: false`,
-echoed it back, and then spent the entire 1200 token generation budget on a hidden reasoning
-channel that ollama strips out of the response body. The visible answer is whatever happened to
-be emitted before the budget ran out, which is usually nothing.
+output is. What actually happened is that it never finished the sentence. The server accepted
+`think: false`, echoed it back, and then spent the entire 1200 token generation budget on a hidden
+reasoning channel that ollama strips out of the response body. The visible answer is whatever
+happened to be emitted before the budget ran out, which is often nothing at all.
 
 A benchmark that grades those responses is reporting its own `num_predict`. So every fixture row
 in this project records `done_reason`, `eval_count` and `thinking_chars`, a row cut off at the
@@ -103,13 +103,15 @@ def main() -> int:
             f"{len(row['content'])} | `{preview}` |")
 
     cut = [row for row in rows if row["done_reason"] == "length"]
+    gap = min((row["thinking_chars"] - len(row["content"]) for row in cut), default=0)
     lines += [
         "",
         "## What this changes",
         "",
         f"{len(cut)} of {len(rows)} calls stopped because they ran out of budget rather than",
-        "because the model had finished. Every one of those has a hidden reasoning channel longer",
-        "than the visible answer, so the text a grader would score is a fragment.",
+        "because the model had finished. On the narrowest of those the hidden reasoning channel",
+        f"is {gap} characters longer than the visible answer, so the text a grader would score",
+        "is a fragment of a sentence.",
         "",
         "Three things in this repository follow from it:",
         "",

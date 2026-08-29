@@ -26,8 +26,9 @@ ollama strips out of the response body; `visible` is the answer a benchmark woul
 ## What this changes
 
 2 of 12 calls stopped because they ran out of budget rather than
-because the model had finished. Every one of those has a hidden reasoning channel longer
-than the visible answer, so the text a grader would score is a fragment.
+because the model had finished. On the narrowest of those the hidden reasoning channel
+is 4723 characters longer than the visible answer, so the text a grader would score
+is a fragment of a sentence.
 
 Three things in this repository follow from it:
 
