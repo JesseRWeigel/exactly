@@ -3,6 +3,8 @@
 500 prompts with a precisely checkable count constraint, graded programmatically, with the
 counting rules published, put inside the prompt, and their sensitivity measured.
 
+Leaderboard: https://jesserweigel.github.io/exactly/
+
 Catalog task: `EVAL-040`. One of a public catalog of build ideas:
 https://github.com/JesseRWeigel/722-things-to-build
 
@@ -289,8 +291,12 @@ VERIFY PASSED: exactly
 - **The abbreviation list is closed and always will be.** There is no rule that separates `etc.`
   from `Ltd.` without a list, and a longer list would change the sentence counts. The list is in
   `exactly/rules.py`, it is in the fingerprint, and a change to it is visible in a diff.
-- **No page deployment has been confirmed.** `docs/index.html` is generated and diffed on every
-  verify, and the Pages workflow is committed, but the published URL has not been fetched back.
+- **The page is published and confirmed, the workflow's own verify run is the weaker claim.**
+  `docs/index.html` is regenerated and diffed on every verify, the deployed page at
+  https://jesserweigel.github.io/exactly/ was fetched back and is byte identical to the committed
+  file, and the GitHub Actions run executes `scripts/verify.sh` on a clean ubuntu runner. What
+  that does not cover is any browser behaviour: the page carries no script, so there is nothing to
+  run and fail, and the markup is walked by a parser in the test suite rather than rendered.
 
 ## License
 

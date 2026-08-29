@@ -1,4 +1,4 @@
-"""The dataset, the reference control, and the fixture loader's two refusals.
+"""The dataset, the reference control, and the fixture loader's three refusals.
 
 `ReferenceControl` is the load-bearing class. A grader that no answer can satisfy is a bug that
 looks exactly like a hard benchmark, so the reference composer answers all 500 prompts and every

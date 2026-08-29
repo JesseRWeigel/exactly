@@ -7,4 +7,5 @@ prompt set, `grade` judges one response, `baselines` supplies systems that answe
 `scripts/record.py`, which is outside the package, opens a socket.
 """
 
-__all__ = ["baselines", "compose", "corpus", "generate", "grade", "recorded", "report", "rules"]
+__all__ = ["baselines", "compose", "corpus", "fingerprint", "generate", "grade",
+           "page", "recorded", "report", "rules"]
