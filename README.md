@@ -90,17 +90,18 @@ first-word reading, `red apples` and `red cars` are the same item, and complianc
 falls by 78 to 97 points for every system on the board. That reading is aggressive and it is on
 the board precisely because somebody would pick it.
 
-**Models err low, and the misses are bimodal.** Over the exact-target families, llama3.2:3b
-undershoots 114 times and overshoots 36, and 20% of its misses are off by exactly one. The rest of
-the distribution has two humps: 49 answers ten or more units short and 54 ten or more units long.
-A single pass rate throws all of that away, so every row carries a signed error and the report
-keeps the histogram.
+**Models err low, and the misses have a long tail on the short side.** Over the 420 exact-target
+items, llama3.2:3b undershoots 111 times and overshoots 36, and 20% of its misses are off by
+exactly one. The rest is lopsided: 49 answers ten or more units short against 19 ten or more units
+long. gemma4:e4b is the same shape, 115 under against 40 over, with 18% of misses off by one. Off
+by one and off by forty are different failures and a pass rate cannot tell them apart, so every
+row carries a signed error and the report keeps the whole histogram.
 
-The signed error is reported over the exact-target families ALONE. That correction changes the
-sign of the headline: pooling the bounds in made two models that undershoot three times as often
-as they
-overshoot report a positive mean error, because `at least 60 words` is satisfied by 140 and that
-counts as an error of +80 on a compliant answer.
+The signed error is reported over the exact-target families ALONE, and that correction flips the
+sign of the headline. Pooling the bounds in made llama3.2:3b, which undershoots three times as
+often as it overshoots, report a mean error of +1.25, because `at least 60 words` is satisfied by
+140 and that counts as an error of +80 on a compliant answer. Over the exact targets alone the
+same model reports -2.19, which is what it actually does.
 
 ## Baselines, because a benchmark with no baseline is a file
 
