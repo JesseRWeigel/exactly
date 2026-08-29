@@ -1,0 +1,119 @@
+{
+  "count": 500,
+  "dialects": {
+    "bullets": [
+      "plain",
+      "all_levels",
+      "dash_only"
+    ],
+    "chars": [
+      "codepoints",
+      "no_whitespace",
+      "utf8_bytes",
+      "nfc_codepoints"
+    ],
+    "items": [
+      "normalized",
+      "exact",
+      "first_word"
+    ],
+    "lines": [
+      "nonblank",
+      "all_lines",
+      "stripped_all"
+    ],
+    "paragraphs": [
+      "blank_line",
+      "single_newline",
+      "indent_or_blank"
+    ],
+    "sentences": [
+      "plain",
+      "naive",
+      "newline_breaks",
+      "require_terminator"
+    ],
+    "words": [
+      "plain",
+      "hyphen_split",
+      "whitespace",
+      "alpha_only"
+    ]
+  },
+  "families": {
+    "bullets_exact": {
+      "n": 70,
+      "targets": [
+        3,
+        12
+      ]
+    },
+    "chars_exact": {
+      "n": 50,
+      "targets": [
+        61,
+        289
+      ]
+    },
+    "lines_exact": {
+      "n": 45,
+      "targets": [
+        3,
+        10
+      ]
+    },
+    "paragraphs_exact": {
+      "n": 45,
+      "targets": [
+        2,
+        6
+      ]
+    },
+    "sentences_at_most": {
+      "n": 40,
+      "targets": [
+        2,
+        6
+      ]
+    },
+    "sentences_exact": {
+      "n": 70,
+      "targets": [
+        2,
+        8
+      ]
+    },
+    "unique_items": {
+      "n": 60,
+      "targets": [
+        5,
+        15
+      ]
+    },
+    "words_at_least": {
+      "n": 40,
+      "targets": [
+        21,
+        97
+      ]
+    },
+    "words_exact": {
+      "n": 80,
+      "targets": [
+        15,
+        116
+      ]
+    }
+  },
+  "prompts_sha256": "d5568259e08480d3ad9ee5ffecd972df6b5acc1472be2e267198aa42c57633ab",
+  "published_rules": {
+    "bullets": "plain",
+    "chars": "codepoints",
+    "items": "normalized",
+    "lines": "nonblank",
+    "paragraphs": "blank_line",
+    "sentences": "plain",
+    "words": "plain"
+  },
+  "seed": 20260829
+}
