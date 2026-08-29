@@ -189,11 +189,11 @@ def _boundaries(text: str, dialect: str) -> list:
             continue
         # plain and newline_breaks share the careful reading below.
         if character == "." and run == index:
-            after = text[index + 1] if index + 1 < length else ""
-            before = text[index - 1] if index else ""
-            if before.isdigit() and after.isdigit():
-                index += 1
-                continue
+            # There is deliberately no separate test for a decimal point here. A stop inside
+            # 3.14 is followed by a digit, and a cut already requires whitespace after the stop,
+            # so the case is decided further down and a guard for it would be unreachable. That
+            # is not a guess: the sabotage suite could not make an explicit decimal guard change
+            # any number in the fingerprint, which is what proved it dead and got it removed.
             if _is_list_marker_stop(text, index):
                 index += 1
                 continue

@@ -104,6 +104,11 @@ def grade(item: dict, response, ruleset=None, lenient: bool = False) -> dict:
         "error": observed - target,
         "count_ok": count_ok, "keyword_ok": keyword_ok, "unique_ok": unique_ok,
         "empty": not text,
+        # `bool(text)` is currently subsumed: every item in this dataset requires a keyword, and
+        # an empty answer cannot contain one, so the empty response already fails. Measured, not
+        # assumed: removing it moved nothing in the fingerprint, which is why the sabotage suite
+        # carries no attack on it. It stays because a family without a keyword requirement would
+        # make it load-bearing again, and 40 items have a bound an empty answer satisfies.
         "compliant": bool(text) and count_ok and keyword_ok and unique_ok,
         "unwrapped": notes,
         "reasons": reasons,

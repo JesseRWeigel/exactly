@@ -81,11 +81,6 @@ SABOTAGES = (
      "    return False",
      "Dr. Smith becomes two sentences"),
 
-    ("sentences_split_on_decimals", "attack", "exactly/rules.py",
-     "            if before.isdigit() and after.isdigit():\n                index += 1\n                continue",
-     "            if False:\n                index += 1\n                continue",
-     "3.5 hours becomes a sentence boundary"),
-
     ("sentences_split_on_list_markers", "attack", "exactly/rules.py",
      "            if _is_list_marker_stop(text, index):",
      "            if False and _is_list_marker_stop(text, index):",
@@ -135,11 +130,6 @@ SABOTAGES = (
      "    return wanted in found",
      "    return True",
      "the required keyword is never checked"),
-
-    ("grader_passes_the_empty_answer", "attack", "exactly/grade.py",
-     "        \"compliant\": bool(text) and count_ok and keyword_ok and unique_ok,",
-     "        \"compliant\": count_ok and keyword_ok and unique_ok,",
-     "an empty response can be graded compliant"),
 
     ("grader_drops_missing_responses", "attack", "exactly/grade.py",
      "    rows = [grade(item, responses.get(item[\"id\"]), ruleset, lenient) for item in items]",
@@ -193,6 +183,26 @@ SABOTAGES = (
      "        del recorded_digest",
      "answers recorded from an older prompt set are scored against today's prompts"),
 )
+
+# TWO SABOTAGES WERE REMOVED HERE, and the measurement that removed them is the record.
+#
+#   sentences_split_on_decimals disabled the guard against splitting a sentence at the stop in
+#   3.14. The fingerprint did not move, because a cut already requires whitespace after the stop
+#   and a decimal point is followed by a digit. The guard was unreachable. It was deleted from
+#   `exactly/rules.py` and from `scripts/check_independent.py` rather than propped up, and the
+#   deletion was confirmed inert the same way: identical fingerprint, 143 tests still passing.
+#
+#   grader_passes_the_empty_answer dropped the `bool(text)` term from the compliance expression.
+#   The fingerprint did not move either, because every item in this dataset requires a keyword and
+#   an empty answer cannot contain one, so an empty response already fails on the keyword. The
+#   term is kept, with a comment saying why, since 40 items carry a bound that an empty answer
+#   satisfies and a keyword-free family would make it load-bearing again.
+#
+# Three others were inert for a different reason and were WIDENED rather than removed, because
+# the corpus was too clean rather than the code correct. `exactly/fingerprint.py` now hashes the
+# prompt digest the code produces as well as the one the committed manifest states, which made
+# manifest_ignores_the_prompts and prompt_hides_the_rule live, and it grades a deliberately
+# partial run, which made grader_drops_missing_responses live.
 
 # The checkers gate 3 consults, each run inside the sabotaged copy. The README fingerprint check
 # is not among them on purpose: it fires for anything that moves the fingerprint and so would

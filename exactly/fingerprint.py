@@ -19,6 +19,10 @@ WHAT IS IN IT, and why each part is there:
   THE SENSITIVITY. The per-dimension spread for the reference and approximate baselines, so a
   dialect that has quietly become a copy of the published one shows up.
 
+  A PARTIALLY ANSWERED RUN. Every baseline answers all 500, so nothing else here can tell the
+  difference between counting an unanswered item as a failure and quietly dropping it. That case
+  is constructed rather than waited for.
+
 WHAT IS DELIBERATELY NOT IN IT: any recorded model response. Sampling is not reproducible, a
 fixture can be re-recorded on a busy day, and a fingerprint that moved when a model was re-run
 would make every sabotage pass gate 2 for free. The deterministic part of this project is the
@@ -123,6 +127,22 @@ def baseline_scores(items: list) -> dict:
     return made
 
 
+def partial_coverage(items: list) -> dict:
+    """Grade a system that answered only part of the dataset.
+
+    Here because a sabotage that DROPPED unanswered items from the score could not be caught
+    without it. Every baseline answers all 500, so on that corpus the difference between counting
+    a missing answer as a failure and ignoring it is invisible, and the sabotage was inert for
+    want of a case rather than for want of a bug. This is the corpus being too clean, and the fix
+    is a case that exercises the code, not a smaller sabotage list.
+    """
+    answers = baselines.responses("reference", items)
+    for item in items[::5]:
+        answers.pop(item["id"], None)
+    scored = grade.score(items, answers)
+    return {"answered": len(answers), "of": len(items), "overall": scored["overall"]}
+
+
 def payload() -> dict:
     """Everything hashed, as plain data, so a human can diff two runs and see what moved."""
     items, meta = generate.load()
@@ -131,12 +151,17 @@ def payload() -> dict:
             "count": meta["count"],
             "seed": meta["seed"],
             "prompts_sha256": meta["prompts_sha256"],
+            # The digest the CODE produces today, next to the one the committed manifest states.
+            # Without this the prompt builder and the manifest builder could both be broken and
+            # nothing hashed here would move, because everything else reads the committed file.
+            "rebuilt_prompts_sha256": generate.manifest(generate.build())["prompts_sha256"],
             "published_rules": meta["published_rules"],
             "dialects": meta["dialects"],
             "families": {name: row["n"] for name, row in sorted(meta["families"].items())},
         },
         "probes": probe_counts(),
         "baselines": baseline_scores(items),
+        "partial_coverage": partial_coverage(items),
         "sensitivity": {
             name: report.sensitivity_for(items, baselines.responses(name, items))
             for name in SENSITIVITY_SYSTEMS

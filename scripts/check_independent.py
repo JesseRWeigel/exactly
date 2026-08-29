@@ -188,9 +188,9 @@ def _cut_points(text: str) -> list:
             continue
         if match.group() == ".":
             before = text[:start]
-            after = text[stop:stop + 1]
-            if before[-1:].isdigit() and after.isdigit():
-                continue
+            # No decimal test, for the same reason `exactly/rules.py` has none: a stop inside a
+            # number is followed by a digit and the whitespace requirement below already refuses
+            # the cut. Both implementations dropped it after the sabotage suite showed it inert.
             if LIST_MARKER_STOP.search(before + "."):
                 continue
             tail = ABBREVIATION_TAIL.search(before + ".")
