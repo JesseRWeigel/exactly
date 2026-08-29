@@ -118,7 +118,13 @@ def main() -> int:
     with path.open("w", encoding="utf-8") as handle:
         for index, item in enumerate(items, start=1):
             row = done.get(item["id"])
-            if row is None or row.get("error"):
+            # Re-ask when there is no row, when the last attempt failed in transport, and when a
+            # row was cut off at a budget SMALLER than the one being used now. That last case is
+            # what makes raising --num-predict repair a fixture instead of leaving the truncated
+            # answers in place to be graded as counting failures.
+            outgrown = (row is not None and row.get("truncated")
+                        and args.num_predict > row.get("num_predict", 0))
+            if row is None or row.get("error") or outgrown:
                 try:
                     reply = call(args.host, args.model, item["prompt"], think,
                                  args.timeout, args.num_predict)

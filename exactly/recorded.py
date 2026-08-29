@@ -114,6 +114,7 @@ def responses(name: str, items: list, directory=None) -> tuple:
             f"the generation budget, above the {TRUNCATION_LIMIT * 100:.0f}% limit. Re-record "
             f"with a larger --num-predict; scoring this would measure the budget, not the model.")
     reasoning = [row.get("thinking_chars", 0) for row in rows.values()]
+    budgets = sorted({row.get("num_predict", 0) for row in rows.values()})
     notes = {
         "rows": len(rows),
         "missing": len(missing),
@@ -121,6 +122,9 @@ def responses(name: str, items: list, directory=None) -> tuple:
         "truncated": len(truncated),
         "truncated_share": share,
         "max_thinking_chars": max(reasoning) if reasoning else 0,
+        # A repaired fixture holds rows recorded at more than one budget. Publishing the range
+        # rather than one number keeps that visible instead of implying a single clean run.
+        "num_predict": budgets,
         "first_missing": missing[0] if missing else None,
     }
     return answered, notes

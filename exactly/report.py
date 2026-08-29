@@ -188,13 +188,15 @@ def as_text(report: dict) -> str:
     lines.append(f"dataset: {dataset['count']} prompts, seed {dataset['seed']}, "
                  f"sha256 {dataset['prompts_sha256'][:16]}")
     lines.append("")
+    # The error columns are over the EXACT families only, because a bound family's signed error
+    # is slack rather than aim and pooling the two makes a model that undershoots look high.
     lines.append(f"{'system':<18} {'kind':<9} {'compliant':>9} {'count':>7} {'keyword':>8} "
-                 f"{'off-by-1':>9} {'mean err':>9} {'worst rule swing':>17}")
+                 f"{'off-by-1':>9} {'exact err':>9} {'worst rule swing':>17}")
     ordered = sorted(report["systems"],
                      key=lambda board: -board["strict"]["overall"]["rate"])
     for board in ordered:
         overall = board["strict"]["overall"]
-        errors = overall["errors"]
+        errors = overall["errors_exact"]
         worst = board["sensitivity"]["worst"]
         swing = (f"{worst['spread_points']:.1f}pt {worst['dimension']}"
                  if worst["dimension"] else "none")

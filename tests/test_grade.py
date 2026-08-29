@@ -176,6 +176,18 @@ class Scoring(unittest.TestCase):
         self.assertEqual(scored["overall"]["compliant"], 1)
         self.assertEqual(scored["overall"]["rate"], 0.5)
 
+    def test_the_error_direction_is_reported_over_exact_targets_alone(self):
+        """A bound family's signed error is slack, not aim. Pooling the two made two models that
+        undershoot three times as often as they overshoot report a POSITIVE mean error."""
+        mixed = [item(id="a-001", target=3, mode="exact"),
+                 item(id="a-002", target=3, mode="at_least")]
+        scored = grade.score(mixed, {"a-001": "yeast rises here",
+                                     "a-002": "yeast rises here and here and here and on"})
+        self.assertEqual(scored["overall"]["errors"]["n"], 2)
+        self.assertEqual(scored["overall"]["errors_exact"]["n"], 1)
+        self.assertGreater(scored["overall"]["errors"]["mean_error"],
+                           scored["overall"]["errors_exact"]["mean_error"])
+
     def test_families_are_kept_apart(self):
         mixed = [item(id="a-001", target=3, family="one"),
                  item(id="b-001", target=3, family="two")]

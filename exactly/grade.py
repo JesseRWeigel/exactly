@@ -183,6 +183,13 @@ def score(items: list, responses: dict, ruleset=None, lenient: bool = False) -> 
             "unique_ok": sum(1 for row in group if row["unique_ok"]),
             "empty": sum(1 for row in group if row["empty"]),
             "errors": error_profile(group),
+            # The same profile over the EXACT targets alone. Mixing bounds into a claim about
+            # direction is misleading and it showed up as soon as there was data: `at least 60
+            # words` is satisfied by 140, which is a legitimate error of +80 on a compliant
+            # answer, so the pooled mean error came out POSITIVE for two models that were
+            # undershooting three times as often as they overshot. A signed mean is only about
+            # aiming when every row was aiming at a point.
+            "errors_exact": error_profile([row for row in group if row["mode"] == "exact"]),
         }
     return {
         "overall": summarise(rows),

@@ -24,6 +24,8 @@ def synthetic_board(name, kind, rate, spread):
                                            "median_abs_relative_error": 0.05,
                                            "histogram": {key: 0 for key in ("0", "+1")}}}}
     overall = dict(families["words_exact"])
+    overall["errors_exact"] = dict(overall["errors"])
+    families["words_exact"]["errors_exact"] = dict(overall["errors"])
     return {
         "system": name, "kind": kind, "fixture": {},
         "strict": {"overall": overall, "families": families},
